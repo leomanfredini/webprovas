@@ -28,7 +28,6 @@ class GradesController extends AppController {
 		if (!$this->request->is('post')){
 			throw new MethodNotAllowedException();			
 		}
-
 		//Tenta apagar a postagem
 		if ($this->Grade->delete($id)){
 			$this->Flash->success('Disciplina apagada com sucesso.');
@@ -36,16 +35,17 @@ class GradesController extends AppController {
 		}
 	}
 
+	public function list_content($id=null) {
+		$grades = $this->Grade->find('list');
+		$this->set('grades', $grades);
+		$content = $this->Grade->read(null, $id); //assuming $id contains a movie id...
+		debug($content);
+	}
+
 	public function add_content($id=null) {
 		$grades = $this->Grade->find('list');
 		$this->set('grades', $grades);
-		// if ($this->request->is('post')) {
-		// 	$this->Content->create();
-		// 	if ($this->Content->save($this->request->data)) {
-		// 		$this->Flash->success('Conteúdo Cadastrado com Sucesso');
-		// 		return $this->redirect(['action' => 'index']);
-		// 	}
-		// 	$this->Flash->error('Não foi possível cadastrar a disciplina');
-		// }
+		$content = $this->Grade->read(null, $id); //assuming $id contains a movie id...
+		debug($content);
 	}
 }
