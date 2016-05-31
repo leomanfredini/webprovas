@@ -37,13 +37,15 @@ class GradesController extends AppController {
 	}
 
 	public function add_content($id=null) {
-		if ($this->request->is('post')) {
-			$this->Content->create();
-			if ($this->Content->save($this->request->data)) {
-				$this->Flash->success('Conteúdo Cadastrado com Sucesso');
-				return $this->redirect(['action' => 'index']);
-			}
-			$this->Flash->error('Não foi possível cadastrar a disciplina');
-		}
+		$grades = $this->Grade->find('list');
+		$this->set('grades', $grades);
+		// if ($this->request->is('post')) {
+		// 	$this->Content->create();
+		// 	if ($this->Content->save($this->request->data)) {
+		// 		$this->Flash->success('Conteúdo Cadastrado com Sucesso');
+		// 		return $this->redirect(['action' => 'index']);
+		// 	}
+		// 	$this->Flash->error('Não foi possível cadastrar a disciplina');
+		// }
 	}
 }

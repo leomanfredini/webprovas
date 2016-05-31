@@ -1,5 +1,6 @@
 <?php
 
 class Content extends AppModel {
-	public $belongsTo = 'Grade';	
+	var $name = 'Content';
+	public $belongsTo = array('Grade');	
 }
