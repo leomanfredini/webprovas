@@ -8,7 +8,8 @@ class GradesController extends AppController {
 		$this->Grade->recursive = 0;
 		$lista = $this->paginate();
 		$this->set('grades', $lista);
-		//debug($this->Grade->find('all'));		
+		//debug($this->Grade->find('all'));	
+		//debug($lista);	
 	}
 
 
@@ -35,11 +36,13 @@ class GradesController extends AppController {
 		}
 	}
 
-	public function list_content($id=null) {
-		$grades = $this->Grade->find('list');
-		$this->set('grades', $grades);
-		$content = $this->Grade->read(null, $id); //assuming $id contains a movie id...
-		debug($content);
+	public function list_content() {
+		$this->loadModel('Content');
+		$lista = $this->Content->find('all');
+		//$lista = $this->paginate();
+		$this->set('contents', $lista);
+		//$content = $this->Grade->read(null, $id); //assuming $id contains a movie id...
+		//debug($lista);
 	}
 
 	public function add_content($id=null) {
