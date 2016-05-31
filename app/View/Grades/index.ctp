@@ -1,6 +1,8 @@
 <h3>Disciplinas</h3>
 
 <?php echo $this->Html->link('Adicionar Disciplina', ['controller' => 'grades', 'action' => 'add']); ?>
+<br>
+<?php echo $this->Html->link('Adicionar Conteudo', ['controller' => 'grades', 'action' => 'add_content']); ?>
 
 <br><br><hr><br>
 <h4>Disciplinas Cadastradas</h4>
