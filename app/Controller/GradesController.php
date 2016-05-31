@@ -45,7 +45,6 @@ class GradesController extends AppController {
 	public function add_content($id=null) {
 		$grades = $this->Grade->find('list');
 		$this->set('grades', $grades);
-		$content = $this->Grade->read(null, $id); //assuming $id contains a movie id...
-		debug($content);
+
 	}
 }
