@@ -6,6 +6,8 @@
 
 <br><br><hr><br>
 <h4>Conteúdos Cadastrados</h4>
+<h3><?php echo $contents[0]['Grade']['name'] ?></h3>
+<?php debug($contents) ?>
 
 <table>
 	<tr>
@@ -17,8 +19,7 @@
 	<?php foreach ($contents as $content): ?>
 	<tr>
 		<td><?php echo $content['Grade']['name'] ?></td>
-		<td><?php echo $content['Content']['name'] ?></td>
-		
+		<td><?php echo $content['Content']['name'] ?></td>		
 	</tr>
 	<?php endforeach; ?>
 

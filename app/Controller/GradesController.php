@@ -36,9 +36,10 @@ class GradesController extends AppController {
 		}
 	}
 
-	public function list_content() {
+	public function list_content($id=null) {
 		$this->loadModel('Content');
-		$lista = $this->Content->find('all');
+		//$lista = $this->Content->find('all');
+		$lista = $this->Content->findAllByGrade_id($id);
 		//$lista = $this->paginate();
 		$this->set('contents', $lista);
 		//$content = $this->Grade->read(null, $id); //assuming $id contains a movie id...
@@ -46,8 +47,16 @@ class GradesController extends AppController {
 	}
 
 	public function add_content($id=null) {
-		$grades = $this->Grade->find('list');
-		$this->set('grades', $grades);
+		$this->Grade->id = $id;
+		//Verifica se é get (primeiro acesso)
+		if ($this->request->is('get')){
+			$this->request->data = $this->Grade->findById($id);
+		} else {
+			$grades = $this->Grade->find('list');
+			$this->set('grades', $grades);	
+		}
+
+		
 
 	}
 }

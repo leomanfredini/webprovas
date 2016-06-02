@@ -18,7 +18,7 @@
 	<tr>
 		<td><?php echo $grade['Grade']['id'] ?></td>
 		<td><?php echo $grade['Grade']['name'] ?></td>
-		<td><?php echo $this->Form->postlink('Excluir', ['action' => 'delete', $grade['Grade']['id']], ['confirm' => 'Tem certeza?']); ?></td>
+		<td><?php echo $this->Html->link('Add Conteúdo', ['action' => 'add_content', $grade['Grade']['id']]); ?> | <?php echo $this->Form->postlink('Excluir', ['action' => 'delete', $grade['Grade']['id']], ['confirm' => 'Tem certeza?']); ?></td>
 	</tr>
 	<?php endforeach; ?>
 
