@@ -39,24 +39,36 @@ class GradesController extends AppController {
 	public function list_content($id=null) {
 		$this->loadModel('Content');
 		//$lista = $this->Content->find('all');
-		$lista = $this->Content->findAllByGrade_id($id);
+		if ($id != null){
+			$lista = $this->Content->findAllByGrade_id($id);	
+			$this->set('contents', $lista);
+		} else {
+			//$this->Flash->success('Sem Conteudo Cadastrado');
+			$this->redirect(['action' => 'index']);
+		}
+		
 		//$lista = $this->paginate();
-		$this->set('contents', $lista);
+		
 		//$content = $this->Grade->read(null, $id); //assuming $id contains a movie id...
 		//debug($lista);
 	}
 
 	public function add_content($id=null) {
-		$this->Grade->id = $id;
+		//$this->Grade->id = $id;
 		//Verifica se é get (primeiro acesso)
 		if ($this->request->is('get')){
 			$this->request->data = $this->Grade->findById($id);
+
+		} else if ($id != null){
+			$this->loadModel('Content');
+			if ($this->Content->save($this->request->data)){
+				$this->Flash->success('Conteudo Cadastrado');
+				$this->redirect(['action' => 'index']);
+			//$grades = $this->Grade->find('list');
+			//$this->set('grades', $grades);	
+			}
 		} else {
-			$grades = $this->Grade->find('list');
-			$this->set('grades', $grades);	
+			$this->redirect(['action' => 'index']);
 		}
-
-		
-
 	}
 }

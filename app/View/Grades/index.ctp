@@ -1,11 +1,7 @@
 <h3>Disciplinas</h3>
 
-<?php echo $this->Html->link('Adicionar Disciplina', ['controller' => 'grades', 'action' => 'add']); ?>
-<br>
-<?php echo $this->Html->link('Adicionar Conteudo', ['controller' => 'grades', 'action' => 'add_content']); ?>
+<hr><br>
 
-<br><br><hr><br>
-<h4>Disciplinas Cadastradas</h4>
 
 <table>
 	<tr>
@@ -18,8 +14,12 @@
 	<tr>
 		<td><?php echo $grade['Grade']['id'] ?></td>
 		<td><?php echo $grade['Grade']['name'] ?></td>
-		<td><?php echo $this->Html->link('Add Conteúdo', ['action' => 'add_content', $grade['Grade']['id']]); ?> | <?php echo $this->Form->postlink('Excluir', ['action' => 'delete', $grade['Grade']['id']], ['confirm' => 'Tem certeza?']); ?></td>
+		<td><?php echo $this->Html->link('Listar Conteúdo', ['action' => 'list_content', $grade['Grade']['id']]); ?>
+		| <?php echo $this->Html->link('Cadastrar Conteúdo', ['action' => 'add_content', $grade['Grade']['id']]); ?> 
+		| <?php echo $this->Form->postlink('Excluir', ['action' => 'delete', $grade['Grade']['id']], ['confirm' => 'Tem certeza?']); ?></td>
 	</tr>
 	<?php endforeach; ?>
 
 </table>
+
+<?php echo $this->Html->link('Adicionar Disciplina', ['controller' => 'grades', 'action' => 'add']); ?>

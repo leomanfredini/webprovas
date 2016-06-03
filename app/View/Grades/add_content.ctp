@@ -1,3 +1,8 @@
+<h3>Cadastrar Conteúdo</h3>
+
+
+<hr><br>
+
 <?php
 echo $this->Form->create('Grade', ['url' => ['controller' => 'contents', 'action' => 'add']]);
     

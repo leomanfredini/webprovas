@@ -17,21 +17,19 @@ class ContentsController extends AppController {
 		$this->Content->save($this->request->data);
 		$this->Flash->success('Conteudo Cadastrado');
 		$this->redirect(['controller' => 'Grades', 'action' => 'index']);
-		
 
-		// $this->Content->grade_id = $id;
-		// //Verifica se é get (primeiro acesso)
-		// if ($this->request->is('get')){
-		// 	$this->request->data = $this->Content->findById($id);
-		// } else {
-		// 		$this->Content->set(array(
-		// 			'grade_id' => $id));			
-		// 		$this->Content->save($this->request->data);
-		// 		$this->Flash->success('Conteudo Cadastrado');
-		// 		$this->redirect(['controller' => 'Grades', 'action' => 'index']);								
+	}
 
-		// }
 
+	public function delete($id){
+		if (!$this->request->is('post')){
+			throw new MethodNotAllowedException();			
+		}
+		//Tenta apagar a postagem
+		if ($this->Content->delete($id)){
+			$this->Flash->success('Conteudo apagado com sucesso.');
+			$this->redirect(['controller' => 'Grades', 'action' => 'index']);
+		}
 	}
 
 }
