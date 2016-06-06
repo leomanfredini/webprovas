@@ -2,10 +2,10 @@
 -- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: May 31, 2016 at 10:21 AM
--- Server version: 5.5.49-0ubuntu0.14.04.1
--- PHP Version: 5.5.9-1ubuntu4.17
+-- Máquina: localhost
+-- Data de Criação: 04-Jun-2016 às 15:43
+-- Versão do servidor: 5.5.49-0ubuntu0.14.04.1
+-- versão do PHP: 5.5.9-1ubuntu4.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `provafacil`
+-- Base de Dados: `provafacil`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `answers`
+-- Estrutura da tabela `answers`
 --
 
 CREATE TABLE IF NOT EXISTS `answers` (
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `answers` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
+-- Estrutura da tabela `categories`
 --
 
 CREATE TABLE IF NOT EXISTS `categories` (
@@ -50,10 +50,10 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `rght` int(10) DEFAULT NULL,
   `name` varchar(255) DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=43 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
 
 --
--- Dumping data for table `categories`
+-- Extraindo dados da tabela `categories`
 --
 
 INSERT INTO `categories` (`id`, `parent_id`, `lft`, `rght`, `name`) VALUES
@@ -68,12 +68,13 @@ INSERT INTO `categories` (`id`, `parent_id`, `lft`, `rght`, `name`) VALUES
 (36, 31, 17, 18, 'Beverages'),
 (37, 29, 11, 12, 'Photoshop'),
 (38, 29, 13, 14, 'Flash'),
-(39, 28, 7, 8, 'cakePHP');
+(39, 28, 7, 8, 'cakePHP'),
+(40, NULL, 25, 26, 'Teste');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contents`
+-- Estrutura da tabela `contents`
 --
 
 CREATE TABLE IF NOT EXISTS `contents` (
@@ -84,23 +85,25 @@ CREATE TABLE IF NOT EXISTS `contents` (
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_grade` (`grade_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
 
 --
--- Dumping data for table `contents`
+-- Extraindo dados da tabela `contents`
 --
 
 INSERT INTO `contents` (`id`, `name`, `grade_id`, `created`, `modified`) VALUES
-(6, 'Verbos', 5, NULL, NULL),
-(7, 'Substantivos', 5, NULL, NULL),
-(8, 'Álgebra Linear', 6, NULL, NULL),
+(6, 'Verbos', 5, NULL, '2016-06-01 19:02:12'),
+(8, 'Álgebra Linear', 6, NULL, '2016-06-01 19:07:21'),
 (9, 'Romances', 4, NULL, NULL),
-(10, 'História', 4, NULL, NULL);
+(10, 'História', 4, NULL, '2016-06-01 19:06:31'),
+(25, 'Ficção', 4, '2016-06-01 19:35:04', '2016-06-01 19:35:04'),
+(27, 'Substantivos', 5, '2016-06-02 18:48:48', '2016-06-02 18:48:48'),
+(30, 'Redação', 5, '2016-06-02 19:48:59', '2016-06-02 19:48:59');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `grades`
+-- Estrutura da tabela `grades`
 --
 
 CREATE TABLE IF NOT EXISTS `grades` (
@@ -109,10 +112,10 @@ CREATE TABLE IF NOT EXISTS `grades` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
--- Dumping data for table `grades`
+-- Extraindo dados da tabela `grades`
 --
 
 INSERT INTO `grades` (`id`, `name`, `created`, `modified`) VALUES
@@ -121,12 +124,14 @@ INSERT INTO `grades` (`id`, `name`, `created`, `modified`) VALUES
 (6, 'Matemática', '2016-05-28 11:02:41', '2016-05-28 11:02:41'),
 (7, 'Geografia', '2016-05-28 12:18:49', '2016-05-28 12:18:49'),
 (8, 'História', '2016-05-29 16:59:16', '2016-05-29 16:59:16'),
-(9, 'Física', '2016-05-31 00:39:28', '2016-05-31 00:39:28');
+(9, 'Física', '2016-05-31 00:39:28', '2016-05-31 00:39:28'),
+(10, 'Química', '2016-05-31 12:56:59', '2016-05-31 12:56:59'),
+(11, 'Língua Estangeira', '2016-06-02 19:05:02', '2016-06-02 19:05:02');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `questions`
+-- Estrutura da tabela `questions`
 --
 
 CREATE TABLE IF NOT EXISTS `questions` (
@@ -138,12 +143,12 @@ CREATE TABLE IF NOT EXISTS `questions` (
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_content` (`content_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Estrutura da tabela `users`
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
@@ -164,25 +169,25 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 --
--- Constraints for table `answers`
+-- Limitadores para a tabela `answers`
 --
 ALTER TABLE `answers`
   ADD CONSTRAINT `answers_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`);
 
 --
--- Constraints for table `contents`
+-- Limitadores para a tabela `contents`
 --
 ALTER TABLE `contents`
   ADD CONSTRAINT `contents_ibfk_1` FOREIGN KEY (`grade_id`) REFERENCES `grades` (`id`);
 
 --
--- Constraints for table `questions`
+-- Limitadores para a tabela `questions`
 --
 ALTER TABLE `questions`
   ADD CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`content_id`) REFERENCES `contents` (`id`);
 
 --
--- Constraints for table `users`
+-- Limitadores para a tabela `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`grade_id`) REFERENCES `grades` (`id`);

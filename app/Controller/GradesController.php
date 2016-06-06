@@ -8,8 +8,6 @@ class GradesController extends AppController {
 		$this->Grade->recursive = 0;
 		$lista = $this->paginate();
 		$this->set('grades', $lista);
-		//debug($this->Grade->find('all'));	
-		//debug($lista);	
 	}
 
 
@@ -36,39 +34,23 @@ class GradesController extends AppController {
 		}
 	}
 
-	public function list_content($id=null) {
-		$this->loadModel('Content');
-		//$lista = $this->Content->find('all');
-		if ($id != null){
-			$lista = $this->Content->findAllByGrade_id($id);	
-			$this->set('contents', $lista);
-		} else {
-			//$this->Flash->success('Sem Conteudo Cadastrado');
-			$this->redirect(['action' => 'index']);
+
+	public function edit($id = null) {
+		$this->Grade->id = $id;
+		if (!$this->Grade->exists()) {
+			throw new NotFoundException('Disciplina Inválida');
 		}
-		
-		//$lista = $this->paginate();
-		
-		//$content = $this->Grade->read(null, $id); //assuming $id contains a movie id...
-		//debug($lista);
-	}
-
-	public function add_content($id=null) {
-		//$this->Grade->id = $id;
-		//Verifica se é get (primeiro acesso)
-		if ($this->request->is('get')){
-			$this->request->data = $this->Grade->findById($id);
-
-		} else if ($id != null){
-			$this->loadModel('Content');
-			if ($this->Content->save($this->request->data)){
-				$this->Flash->success('Conteudo Cadastrado');
+		if ($this->request->is('post') || $this->request->is('put')) {
+			if ($this->Grade->save($this->request->data)) {
+				$this->Flash->success('Conteúdo alterado com sucesso.');
 				$this->redirect(['action' => 'index']);
-			//$grades = $this->Grade->find('list');
-			//$this->set('grades', $grades);	
+			} else {
+				$this->Flash->error('ERRO!! A disciplina não pôde ser alterada!!!');
 			}
 		} else {
-			$this->redirect(['action' => 'index']);
+			$this->request->data = $this->Grade->read(null, $id);
 		}
 	}
+
+
 }

@@ -1,25 +1,34 @@
-<h3>Disciplinas</h3>
+<div class="grades index">
 
-<hr><br>
+	<h3>Disciplinas</h3>
 
+	<table cellpadding="0" cellspacing="0">
+		<tr>
+			<th><?php echo $this->Paginator->sort('id');?></th>
+			<th><?php echo $this->Paginator->sort('name', 'Nome');?></th>
+			<th>Ações</th>
+		</tr>
 
-<table>
-	<tr>
-		<th><?php echo $this->Paginator->sort('id');?></th>
-		<th><?php echo $this->Paginator->sort('name', 'Nome');?></th>
-		<th>Ação</th>
-	</tr>
+		<?php foreach ($grades as $grade): ?>
+		<tr>
+			<td><?php echo $grade['Grade']['id'] ?></td>
+			<td><?php echo $grade['Grade']['name'] ?></td>
+			<td class="actions">
+				<?php echo $this->Html->link('Editar', ['action' => 'edit', $grade['Grade']['id']]); ?> 
+				<?php echo $this->Form->postlink('Excluir', ['action' => 'delete', $grade['Grade']['id']], ['confirm' => 'Tem certeza?']); ?>
+			</td>
+		</tr>
+		<?php endforeach; ?>
+	</table>
+</div>
 
-	<?php foreach ($grades as $grade): ?>
-	<tr>
-		<td><?php echo $grade['Grade']['id'] ?></td>
-		<td><?php echo $grade['Grade']['name'] ?></td>
-		<td><?php echo $this->Html->link('Listar Conteúdo', ['action' => 'list_content', $grade['Grade']['id']]); ?>
-		| <?php echo $this->Html->link('Cadastrar Conteúdo', ['action' => 'add_content', $grade['Grade']['id']]); ?> 
-		| <?php echo $this->Form->postlink('Excluir', ['action' => 'delete', $grade['Grade']['id']], ['confirm' => 'Tem certeza?']); ?></td>
-	</tr>
-	<?php endforeach; ?>
+<div class="actions">
+	<h3>Ações</h3>
+	<ul>
+		<li><?php echo $this->Html->link('Adicionar Disciplina', ['controller' => 'grades', 'action' => 'add']); ?></li>
+		<li><?php echo $this->Html->link('Listar Conteúdos', ['controller' => 'contents', 'action' => 'index']); ?> </li>
+		<li><?php echo $this->Html->link('Adicionar Conteúdo', ['controller' => 'contents', 'action' => 'add']); ?> </li>
+	</ul>
+	
+</div>
 
-</table>
-
-<?php echo $this->Html->link('Adicionar Disciplina', ['controller' => 'grades', 'action' => 'add']); ?>
