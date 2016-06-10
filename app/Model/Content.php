@@ -3,12 +3,12 @@
 class Content extends AppModel {
 	public $name = 'Content';
 
-	public $belongsTo = array(
-		'Grade' => array(
+	public $belongsTo = [
+		'Grade' => [
 			'className' => 'Grade',
 			'foreignKey' => 'grade_id'
-		)
-	);
+		]
+	];
 
 	public $validate = [
 		'name' => [

@@ -10,7 +10,6 @@ class ContentsController extends AppController {
 		$this->Content->recursive = 0;
 		$this->set('contents', $this->paginate());
 	}
-
 	
 
 
@@ -60,6 +59,17 @@ class ContentsController extends AppController {
 		}
 		$grades = $this->Content->Grade->find('list');
 		$this->set(compact('grades'));
+	}
+
+
+
+	public function getByGrade() {
+	     $grade_id = $this->request->data['Question']['grade_id'];
+	     $contents = $this->Content->find('list', array(
+	          'conditions' => array('Content.grade_id' => $grade_id),
+	          'recursive' => -1));
+	     $this->set('contents', $contents);
+	     $this->layout = 'ajax';
 	}
 
 }

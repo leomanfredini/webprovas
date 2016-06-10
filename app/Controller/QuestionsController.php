@@ -2,17 +2,27 @@
 
 class QuestionsController extends AppController {
 
+	public $helpers = ['Html', 'Form', 'Flash', 'Js'];
+
+
 	public function index() {
+		// $grades = $this->Content->Grade->find('list');
+		// $this->set(compact('grades'));
 
 	}
 
+	public function add() {
+		
+	}
 
-	public function add(){
+	public function add_o(){
+		$this->LoadModel('Answer');
+		//$this->Question->contain('Answer');
 
 		if ($this->request->is('post')){
 
 			//Tenta gravar
-			$gravacao = $this->Question->save($this->request->data);
+			$gravacao = $this->Question->saveAll($this->request->data);
 
 			//Funcionou??
 			if ($gravacao) {
@@ -20,21 +30,34 @@ class QuestionsController extends AppController {
 				$this->redirect(['action' => 'index']);
 			}
 		}
+		$grades = $this->Question->Grade->find('list', ['order' => 'Grade.name ASC']);
+		$this->set(compact('grades'));
+		$contents = $this->Question->Content->find('list');
+		$this->set(compact('contents'));
+	}
+
+
+	public function add_d() {
+	    $this->LoadModel('Answer');
+		//$this->Question->contain('Answer');
+
+		if ($this->request->is('post')){
+
+			//Tenta gravar
+			$gravacao = $this->Question->saveAll($this->request->data);
+
+			//Funcionou??
+			if ($gravacao) {
+				$this->Flash->success('Questão salva com sucesso');
+				$this->redirect(['action' => 'index']);
+			}
+		}
+		$grades = $this->Question->Grade->find('list', ['order' => 'Grade.name ASC']);
+		$this->set(compact('grades'));
+		$contents = $this->Question->Content->find('list');
+		$this->set(compact('contents'));
 	}
 
 
 
-	public function get_by_country($id = null) {
-		//$this->loadModel('Grades');
-	    $country_id = $this->request->data['Grades']['id'];
-	    $this->loadModel('Content');
-	    $subcategories = $this->Content->find('list', array(
-	        'conditions' => array('Contents.id_grade' => $country_id),
-	        'fields' => 'name',
-	        'recursive' => -1
-	    ));
-
-	    $this->set('cities',$subcategories);
-	    $this->layout = 'ajax';
-	}
 }
