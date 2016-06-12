@@ -2,7 +2,7 @@
 
 
 class Question extends AppModel {
-	public $hasOne = [
+	public $belongsTo = [
         'Grade' => [
             'className' => 'Grade',
             'foreignKey' => 'grade_id'            

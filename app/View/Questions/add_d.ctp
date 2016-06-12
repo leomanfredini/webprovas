@@ -10,8 +10,8 @@
 	echo $this->Form->input('content_id', ['label' => 'Conteúdo', 'empty' => '-Escolha o Conteúdo-']);	
 	echo $this->Form->input('description',['label'=>'Enunciado da Questão', 'rows'=>'3']);
     echo $this->Form->input('Answer.0.description',['label'=>'Resposta', 'rows'=>'3']);
-    echo $this->Form->input('Answer.0.is_correct', array('type'=>'hidden', 'value' => '1'));
-    echo $this->Form->input('type', array('type'=>'hidden', 'value' => 'd'));
+    echo $this->Form->input('Answer.0.is_correct', ['type'=>'hidden', 'value' => '1']);
+    echo $this->Form->input('type', ['type'=>'hidden', 'value' => 'd']);
 	echo $this->Form->end('Cadastrar');
 	?>
     
@@ -19,6 +19,8 @@
 </div>
 
 <div class="actions">
+    <?php echo $this->element('menu'); ?>
+    <br><hr><br>
     <h3>Ações</h3>
     <ul>
         <li><?php echo $this->Html->link('Adicionar Questões', ['controller' => 'questions', 'action' => 'add']); ?></li>

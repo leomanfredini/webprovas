@@ -11,7 +11,9 @@
 </div>
 
 <div class="actions">
-	<h3>Ações</h3>
+	<?php echo $this->element('menu'); ?>
+    <br><hr><br>
+    <h3>Ações</h3>
 	<ul>
 		<li><?php echo $this->Html->link('Listar Conteudos', ['controller' => 'contents', 'action' => 'index']); ?> </li>
 		<li><?php echo $this->Html->link('Listar Disciplinas', ['action' => 'index']);?></li>

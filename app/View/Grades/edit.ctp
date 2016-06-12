@@ -10,6 +10,8 @@
 <?php echo $this->Form->end('Salvar');?>
 </div>
 <div class="actions">
+	<?php echo $this->element('menu'); ?>
+    <br><hr><br>
 	<h3>Ações</h3>
 	<ul>
 		<li><?php echo $this->Form->postLink('Excluir', ['action' => 'delete', $this->Form->value('Grade.id')], ['confirm' => 'Deseja Realmente Excluir']); ?></li>

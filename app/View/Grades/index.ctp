@@ -23,6 +23,8 @@
 </div>
 
 <div class="actions">
+	<?php echo $this->element('menu'); ?>
+    <br><hr><br>
 	<h3>Ações</h3>
 	<ul>
 		<li><?php echo $this->Html->link('Adicionar Disciplina', ['controller' => 'grades', 'action' => 'add']); ?></li>
