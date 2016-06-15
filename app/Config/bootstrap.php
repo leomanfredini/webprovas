@@ -67,6 +67,7 @@ Cache::config('default', array('engine' => 'File'));
  * CakePlugin::load('DebugKit'); // Loads a single plugin named DebugKit
  */
 
+
 /**
  * To prefer app translation over plugin translation, you can set
  *
@@ -109,3 +110,7 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
+
+//Habilita o plugin Report Manager - Descomentar a linha abaixo e descompactar o conteudo zip em /app/Plugin
+//CakePlugin::load('ReportManager',array('bootstrap' => true));
+
