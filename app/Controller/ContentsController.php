@@ -17,7 +17,7 @@ class ContentsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Content->create();
 			if ($this->Content->save($this->request->data)) {
-				$this->Flash->success('Conteudo Cadastrado');
+				$this->Flash->success('Conteúdo Cadastrado com Sucesso');
 				$this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error('ERRO!! O conteúdo não pôde ser cadastrado');

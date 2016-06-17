@@ -2,7 +2,7 @@
 
 <div class="questions form">
 <fieldset>
-        <legend><?php echo ('Cadastrar Questão Objetiva'); ?></legend>
+        <legend><?php echo ('Editar Questão Objetiva'); ?></legend>
 	<?php
 	echo $this->Form->create('Question');
 	echo $this->Form->input('id');
@@ -17,34 +17,30 @@
         <th>Alternativas</th>
         <th style="width:45px;text-align:center;">Correta</th>        
     </tr>
-    <tr>        
+    <tr>                 
         <td><?php echo $this->Form->input('Answer.0.description', ['label'=>'','type'=>'text']); ?></td>        
         <td><?php echo $this->Form->input('Answer.0.is_correct', ['type'=>'radio', 'options' => [1 => '']]); ?></td>
+        <td><?php echo $this->Form->input('Answer.0.id', ['type'=>'hidden']); ?></td>
     </tr>
     <tr>        
         <td><?php echo $this->Form->input('Answer.1.description', ['label'=>'','type'=>'text']); ?></td>        
         <td><?php echo $this->Form->input('Answer.1.is_correct', ['type'=>'radio', 'options' => [1 => '']]); ?></td>
+        <td><?php echo $this->Form->input('Answer.1.id', ['type'=>'hidden']); ?></td>
     </tr>
     <tr>        
         <td><?php echo $this->Form->input('Answer.2.description', ['label'=>'','type'=>'text']); ?></td>        
         <td><?php echo $this->Form->input('Answer.2.is_correct', ['type'=>'radio', 'options' => [1 => '']]); ?></td>
+        <td><?php echo $this->Form->input('Answer.2.id', ['type'=>'hidden']); ?></td>
     </tr>
     <tr>        
         <td><?php echo $this->Form->input('Answer.3.description', ['label'=>'','type'=>'text']); ?></td>        
         <td><?php echo $this->Form->input('Answer.3.is_correct', ['type'=>'radio', 'options' => [1 => '']]); ?></td>
+        <td><?php echo $this->Form->input('Answer.3.id', ['type'=>'hidden']); ?></td>
     </tr>    
     </table>
-<?php echo $this->Form->end('Cadastrar'); ?>
+<?php echo $this->Form->end('Alterar'); ?>
 
 </fieldset>
-</div>
-
-
-<div class="actions">
-    <?php echo $this->element('menu_main'); ?>
-    <br><hr><br>
-    <?php echo $this->element('menu_questions'); ?>
-</div>
 
 
 

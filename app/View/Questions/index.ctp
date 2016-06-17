@@ -25,8 +25,10 @@
 		<?php endforeach; ?>
 	</table>
 </div>
+
 <div class="actions">
-<?php echo $this->element('menu'); ?>
-    <br><hr><br>	
+    <?php echo $this->element('menu_main'); ?>
+    <br><hr><br>
+    <?php echo $this->element('menu_questions'); ?>
 </div>
 

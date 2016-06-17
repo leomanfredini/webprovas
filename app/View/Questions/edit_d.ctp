@@ -2,7 +2,7 @@
 
 <div class="questions form">
 <fieldset>
-        <legend><?php echo ('Cadastrar Questão Dissertativa'); ?></legend>
+        <legend><?php echo ('Editar Questão Dissertativa'); ?></legend>
 	<?php
 	echo $this->Form->create('Question');
 	echo $this->Form->input('id');
@@ -11,8 +11,9 @@
 	echo $this->Form->input('description',['label'=>'Enunciado da Questão', 'rows'=>'3']);
     echo $this->Form->input('Answer.0.description',['label'=>'Resposta', 'rows'=>'3']);
     echo $this->Form->input('Answer.0.is_correct', ['type'=>'hidden', 'value' => '1']);
+    echo $this->Form->input('Answer.0.id', ['type'=>'hidden']);
     echo $this->Form->input('type', ['type'=>'hidden', 'value' => 'd']);
-	echo $this->Form->end('Cadastrar');
+	echo $this->Form->end('Alterar');
 	?>
     
 </fieldset>

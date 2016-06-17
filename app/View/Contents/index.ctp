@@ -26,7 +26,7 @@
 </div>
 
 <div class="actions">
-	<?php echo $this->element('menu'); ?>
+	<?php echo $this->element('menu_main'); ?>
     <br><hr><br>
 	<h3>Ações</h3>
 	<ul>

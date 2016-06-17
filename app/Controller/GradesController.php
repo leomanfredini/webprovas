@@ -27,11 +27,15 @@ class GradesController extends AppController {
 		if (!$this->request->is('post')){
 			throw new MethodNotAllowedException();			
 		}
-		//Tenta apagar a postagem
+		
 		if ($this->Grade->delete($id)){
 			$this->Flash->success('Disciplina apagada com sucesso.');
 			$this->redirect(['action' => 'index']);
 		}
+
+		//SQL para apagar respostas sem questões associadas
+		//DELETE FROM `answers` WHERE question_id NOT IN (select id from questions)
+		//SELECT * FROM `answers` WHERE question_id NOT IN (select id from questions)
 	}
 
 
