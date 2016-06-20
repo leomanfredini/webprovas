@@ -1,11 +1,24 @@
 <?php
 
-
 App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 
-
 class User extends AppModel {
+
+	public $belongsTo = [
+        'Grade' => [
+            'className' => 'grade',
+            'foreignKey' => 'grade_id'            
+        ]
+    ];
+
+
 	public $validate = [
+		'name' => [
+			'required' => [
+				'rule' => 'notBlank',
+				'message' => 'Insira o nome completo do usuário',
+			],			
+		],
 		'username' => [
 			'required' => [
 				'rule' => 'notBlank',
@@ -23,9 +36,17 @@ class User extends AppModel {
 				'message' => 'Insira uma senha',
 			],
 		],
+
+		'grade_id' => [
+			'required' => [
+				'rule' => 'notBlank',
+				'message' => 'Selecione uma disciplina',
+			],			
+		],
+
 		'role' => [
 			'valid' => [
-				'rule' => ['inlist', ['admin', 'author']],
+				'rule' => ['inlist', ['admin', 'user']],
 				'message' => 'Insira um papel válido',
 				'allowEmpty' => false,
 			],
@@ -39,5 +60,4 @@ class User extends AppModel {
 		}
 		return true;
 	}
-
 }

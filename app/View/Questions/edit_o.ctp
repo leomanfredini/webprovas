@@ -37,6 +37,11 @@
         <td><?php echo $this->Form->input('Answer.3.is_correct', ['type'=>'radio', 'options' => [1 => '']]); ?></td>
         <td><?php echo $this->Form->input('Answer.3.id', ['type'=>'hidden']); ?></td>
     </tr>    
+    <tr>        
+        <td><?php echo $this->Form->input('Answer.4.description', ['label'=>'','type'=>'text']); ?></td>        
+        <td><?php echo $this->Form->input('Answer.4.is_correct', ['type'=>'radio', 'options' => [1 => '']]); ?></td>
+        <td><?php echo $this->Form->input('Answer.4.id', ['type'=>'hidden']); ?></td>
+    </tr>    
     </table>
 <?php echo $this->Form->end('Alterar'); ?>
 

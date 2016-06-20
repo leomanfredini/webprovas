@@ -6,20 +6,82 @@ class QuestionsController extends AppController {
 
 
 	public function index() {
-		$this->Question->recursive = 0;
-		$lista = $this->paginate();
-		$this->set('questions', $lista);
+		// $this->Question->recursive = 0;
+		// $lista = $this->paginate();
+		// $this->set('questions', $lista);
 
+		$conditions = array();
+		//Transform POST into GET
+		if(($this->request->is('post') || $this->request->is('put')) && isset($this->data['Question'])){
+			$filter_url['controller'] = $this->request->params['controller'];
+			$filter_url['action'] = $this->request->params['action'];
+			// We need to overwrite the page every time we change the parameters
+			$filter_url['page'] = 1;
+
+			// for each filter we will add a GET parameter for the generated url
+			foreach($this->data['Question'] as $name => $value){
+				if($value){
+					// You might want to sanitize the $value here
+					// or even do a urlencode to be sure
+					$filter_url[$name] = urlencode($value);
+				}
+			}	
+			// now that we have generated an url with GET parameters, 
+			// we'll redirect to that page
+			return $this->redirect($filter_url);
+		} else {
+			// Inspect all the named parameters to apply the filters
+			foreach($this->params['named'] as $param_name => $value){
+				// Don't apply the default named parameters used for pagination
+				if(!in_array($param_name, array('page','sort','direction','limit'))){
+					// You may use a switch here to make special filters
+					// like "between dates", "greater than", etc
+					if($param_name == "search"){
+						$conditions['OR'] = array(
+							array('Question.description LIKE' => '%' . $value . '%'),
+    						array('Question.description LIKE' => '%' . $value . '%')
+						);
+					} else {
+						$conditions['Question.'.$param_name] = $value;
+					}					
+					$this->request->data['Filter'][$param_name] = $value;
+				}
+			}
+		}
+		$this->Question->recursive = 0;
+		$this->paginate = array(
+			'limit' => 100,
+			'conditions' => $conditions
+		);
+		$this->set('questions', $this->paginate());
+
+		// get the possible values for the filters and 
+		// pass them to the view
+		$grades = $this->Question->Grade->find('list', ['order' => 'Grade.name ASC']);
+		$this->set(compact('grades'));
+		$contents = $this->Question->Content->find('list');
+		$this->set(compact('contents'));
+
+		// Pass the search parameter to highlight the text
+		$this->set('search', isset($this->params['named']['search']) ? $this->params['named']['search'] : "");
+
+		
 	}
 
 
 	public function view($id = null){
+
+		//$this->LoadModel('Answer');
 		//$this->request->data = $this->Question->read(null, $id);
 		//$this->Question->findAllById($id);
+		$this->request->data = $this->Question->read(null, $id);
 		$dados = $this->Question->findById($id);
 		$this->set('question',$dados);
+		if (!$this->Question->exists()) {
+			throw new NotFoundException('Questão Inexistente');
+		}
+		//debug($dados);
 	}
-
 
 
 

@@ -6,8 +6,8 @@
 	<?php
 	echo $this->Form->create('Question');
 	echo $this->Form->input('id');
-	echo $this->Form->input('grade_id', ['label' => 'Disciplina', 'empty' => '-Escolha a Disciplina-']);
-	echo $this->Form->input('content_id', ['label' => 'Conteúdo', 'empty' => '-Escolha o Conteúdo-']);	
+	echo $this->Form->input('grade_id', ['label' => 'Disciplina', 'empty' => '- Escolha a Disciplina -']);
+	echo $this->Form->input('content_id', ['label' => 'Conteúdo', 'empty' => '- Escolha o Conteúdo -']);	
 	echo $this->Form->input('description',['label'=>'Enunciado da Questão', 'rows'=>'3']);
     echo $this->Form->input('type', ['type'=>'hidden', 'value' => 'o']);
 	//echo $this->Form->end('Enviar');
@@ -32,6 +32,10 @@
     <tr>        
         <td><?php echo $this->Form->input('Answer.3.description', ['label'=>'','type'=>'text']); ?></td>        
         <td><?php echo $this->Form->input('Answer.3.is_correct', ['type'=>'radio', 'options' => [1 => '']]); ?></td>
+    </tr>  
+    <tr>        
+        <td><?php echo $this->Form->input('Answer.4.description', ['label'=>'','type'=>'text']); ?></td>        
+        <td><?php echo $this->Form->input('Answer.4.is_correct', ['type'=>'radio', 'options' => [1 => '']]); ?></td>
     </tr>    
     </table>
 <?php echo $this->Form->end('Cadastrar'); ?>

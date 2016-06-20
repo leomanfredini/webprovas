@@ -1,29 +1,35 @@
-<div class="questions index">
+<div class="questions view">	
 
-	<h3>Questão #<?php echo $question['Question']['id']?></h3>
+	<h3><?php echo $question['Question']['id'] . ' - ' . $question['Question']['description'];?></h3>
 
-	<table cellpadding="0" cellspacing="0">
-		<tr>
-			<th width="100"><?php echo $question['Question']['description'];?></th>
-			<th width="100"><?php echo $this->Paginator->sort('description', 'Enunciado');?></th>
-			<th><?php echo $this->Paginator->sort('grade_id', 'Disciplina');?></th>
-			<th><?php echo $this->Paginator->sort('content_id', 'Conteúdo');?></th>
-			<th width="130" align="center">Ações</th>
-		</tr>
+	<?php
+	$l = 'A';
+	foreach ($question['Answer'] as $answer) {
+		if ($answer['is_correct'] == 1) {
+			echo $this->html->image('test-pass-icon.png') . '&nbsp;&nbsp;';
+		} else {
+			echo $this->html->image('test-incorrect-icon.png') . '&nbsp;&nbsp;';
+		}
+		echo '<strong>' . $l . '</strong> - ' . $answer['description'] . '<br><br>';
+		$l++;
+	}
+	?>	
+	
+	<br>
+	<h5><?php echo 'Questão cadastrada por: ' . $question['User']['name'];?></h5>
+	<br><hr><br>
 
-		<?php foreach ($questions as $question): ?>
-		<tr>
-			<td><?php echo $this->Form->checkbox('published', array('hiddenField' => false)); ?></td>
-			<td><?php echo $this->Text->truncate($question['Question']['description'],50, ['ellipsis' => '...', 'exact' => false]); ?></td>
-			<td><?php echo $question['Grade']['name']; ?></td>
-			<td><?php echo $question['Content']['name']; ?></td>
-			<td class="actions">
-				<?php echo $this->Html->link('Editar', ['action' => 'edit', $question['Question']['id']]); ?> 
-				<?php echo $this->Form->postlink('Excluir', ['action' => 'delete', $question['Question']['id']], ['confirm' => 'Tem certeza?']); ?>
-			</td>
-		</tr>
-		<?php endforeach; ?>
-	</table>
+	<a href="javascript:window.history.back()">Voltar</a>
+
+
+	<br><br><br><hr><br>	
+	<h1>A raposa vermelha ataca o cão preguiçoso</h1>
+	<h2>A raposa vermelha ataca o cão preguiçoso</h2>
+	<h3>A raposa vermelha ataca o cão preguiçoso</h3>
+	<h4>A raposa vermelha ataca o cão preguiçoso</h4>
+	<h5>A raposa vermelha ataca o cão preguiçoso</h5>
+	<h6>A raposa vermelha ataca o cão preguiçoso</h6>
+
 </div>
 
 <div class="actions">

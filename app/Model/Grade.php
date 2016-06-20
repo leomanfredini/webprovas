@@ -9,6 +9,7 @@ class Grade extends AppModel {
  //         ]
  //   ];
 
+
 	public $validate = [
 		'name' => [
 			'rule' => 'notBlank',
