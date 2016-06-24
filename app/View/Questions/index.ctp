@@ -18,11 +18,11 @@
 		// Add a basic search 
 		//echo $this->Form->input("search", array('label' => 'Pesquisar', 'placeholder' => "Pesquisar por..."));
 
-		echo $this->Form->submit("Buscar");
+		echo $this->Form->submit("Filtrar");
 
 		// To reset all the filters we only need to redirect to the base_url
 		echo "<div class='submit actions'>";
-		echo $this->Html->link("Reset",$base_url);
+		echo $this->Html->link("Listar Todas",$base_url);
 		echo "</div>";
 		echo $this->Form->end();
 		?>
@@ -35,6 +35,7 @@
 			<th width="300"><?php echo $this->Paginator->sort('description', 'Enunciado');?></th>
 			<th><?php echo $this->Paginator->sort('grade_id', 'Disciplina');?></th>
 			<th><?php echo $this->Paginator->sort('content_id', 'Conteúdo');?></th>
+			<th><?php echo $this->Paginator->sort('type', 'Tipo');?></th>
 			<th width="130" align="center">Ações</th>
 		</tr>
 
@@ -44,6 +45,7 @@
 			<td><?php echo $this->Html->link($this->Text->truncate($question['Question']['description'],50, ['ellipsis' => '...', 'exact' => false]), ['controller' => 'questions' , 'action' => 'view', $question['Question']['id']]); ?></td>
 			<td><?php echo $question['Grade']['name']; ?></td>
 			<td><?php echo $question['Content']['name']; ?></td>
+			<td><?php echo $question['Question']['type']; ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link('Editar', ['action' => 'edit', $question['Question']['id']]); ?> 
 				<?php echo $this->Form->postlink('Excluir', ['action' => 'delete', $question['Question']['id']], ['confirm' => 'Tem certeza?']); ?>

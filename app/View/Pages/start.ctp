@@ -15,7 +15,12 @@
 
 
 <div class="actions">
-<?php echo $this->element('menu_main'); ?>
+	<?php 
+		if ($this->Session->check('Name')) {
+				  echo $this->element('menu_main');		  
+		} 
+		echo $this->element('menu_users');		
+	?>
     <br><hr><br>
-
 </div>
+

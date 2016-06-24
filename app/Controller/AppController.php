@@ -19,7 +19,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-App::uses('Controller', 'Controller');
+App::uses('Controller', 'Controller', 'Sessions');
 
 
 /**
@@ -33,8 +33,10 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
+
 	public $components = [
 		'Flash',
+		'Session',
 		'Auth' => [
 			'loginRedirect' => [
 				'controller' => 'questions',
@@ -54,7 +56,7 @@ class AppController extends Controller {
 
 	//Executada antes de qualquer outra função
 	public function beforeFilter(){
-		//$this->Auth->allow('index', 'view');
+		$this->Auth->allow('login', 'start');
 	}
 
 	

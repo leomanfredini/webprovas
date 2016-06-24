@@ -42,16 +42,17 @@ class UsersController extends AppController {
 	public function login(){
 		if ($this->request->is('post')) {
 			if ($this->Auth->login()){
+				$this->Session->write('Name', 'Leo');
 				return $this->redirect($this->Auth->redirectUrl());
 			}
 			$this->Flash->error('Nome de Usuario ou senha invalidos');
-		}
+		}		
 	}
 
 	public function logout(){
-		// if ($this->Session->valid()) {
-		//   $this->Session->destroy(); // Destrói		  
-		// }
+		if ($this->Session->valid()) {
+		  $this->Session->destroy(); // Destrói		  
+		}
 		return $this->redirect($this->Auth->logout());
 	}
 
