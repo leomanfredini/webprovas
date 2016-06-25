@@ -12,6 +12,7 @@
     echo $this->Form->input('Answer.0.description',['label'=>'Resposta', 'rows'=>'3']);
     echo $this->Form->input('Answer.0.is_correct', ['type'=>'hidden', 'value' => '1']);
     echo $this->Form->input('type', ['type'=>'hidden', 'value' => 'd']);
+    echo $this->Form->input('user_id', ['type'=>'hidden', 'value' => $this->Session->read('User_id')]);
 	echo $this->Form->end('Cadastrar');
 	?>
     

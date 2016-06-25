@@ -42,7 +42,8 @@ class UsersController extends AppController {
 	public function login(){
 		if ($this->request->is('post')) {
 			if ($this->Auth->login()){
-				$this->Session->write('Name', 'Leo');
+				$this->Session->write('User_id', $this->Auth->user('id'));
+				$this->Session->write('User_name', $this->Auth->user('name'));
 				return $this->redirect($this->Auth->redirectUrl());
 			}
 			$this->Flash->error('Nome de Usuario ou senha invalidos');
