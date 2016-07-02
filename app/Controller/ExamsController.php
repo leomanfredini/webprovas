@@ -4,30 +4,94 @@ class ExamsController extends AppController {
 
 	public $helpers = ['Html', 'Form', 'Flash'];
 
+	
+
 	public function index() {
-		// $this->Grade->recursive = 0;
-		// $lista = $this->paginate();
-		// $this->set('grades', $lista);
-		if ($this->request->data['Exams']['name']){
-			$name = $this->request->data['Exams']['name'];
-		$this->Session->write('Name', $name);
-		$this->Session->read('Name');
+		
+		if ($this->request->is('post')) {
+
+			if ($this->Session->read('Exams_select') != null){				
+				foreach ($this->Session->read('Exams_select') as $k => $value) {
+					$questionsSelected[] = $value;						
+				}
+				debug($questionsSelected);
+				array_push($questionsSelected, $this->request->data['Exams']['num']);
+				echo 'Entrou if';
+				debug($questionsSelected);	
+			} else {
+				$questionsSelected[] = $this->request->data['Exams']['num'];
+				echo 'Entrou else';
+				debug($questionsSelected);				
+			}
+
+			$this->Session->write('Exams_select', $questionsSelected);					
+
 		}
+
+		//REMOVE ITENS
+		//$_SESSION[cart]=array_diff($_SESSION[cart],$prod_id)
 		
 	}
 
 
-	public function add() {
+	public function add_question_to_exam($id) {
 		//if ($this->request->is('post')) {
-		
 
-		// 	$this->Grade->create();
-		// 	if ($this->Grade->save($this->request->data)) {
-		// 		$this->Flash->success('Disciplina Cadastrada com Sucesso');
-		// 		return $this->redirect(['action' => 'index']);
-		// 	}
-		// 	$this->Flash->error('Não foi possível cadastrar a disciplina');
-		// }
+			if ($this->Session->read('Exams_select') != null){				
+				foreach ($this->Session->read('Exams_select') as $k => $value) {
+					$questionsSelected[] = $value;						
+				}
+				debug($questionsSelected);
+				array_push($questionsSelected, $id);
+				$questionsSelected = array_unique($questionsSelected);
+				//echo 'Entrou if';
+				//debug($questionsSelected);	
+				//$this->Session->setFlash(__('Questões adicionadas.',true));
+			} else {
+				$questionsSelected[] = $id;
+				//echo 'Entrou else';
+				//debug($questionsSelected);
+				//$this->Session->setFlash(__('Questões adicionadas.',true));				
+			}
+
+			$this->Session->write('Exams_select', $questionsSelected);	
+			$this->redirect(['controller' => 'questions', 'action' => 'index']);				
+
+		//}
+		
+	}
+
+
+	public function read_selected_item($id) {
+		$questionsSelected[] = null;
+		
+		if (!is_null($this->Session->read('Exams_select'))){				
+			foreach ($this->Session->read('Exams_select') as $k => $value) {
+				$questionsSelected[] = $value;				
+			}			
+		} 
+
+		// echo '<br>Result = ' . $result . '<br><br>';
+		// if (isset($result)) {
+		// 	echo '<p>Key = ' . $result;				
+		// 	$this->set('exames', true);
+		// 	echo 'existe';
+		// } else {
+		// 	$this->set('exames', false);
+		// 	echo 'nao existe';
+		// }		
+
+
+		if (in_array($id, $questionsSelected)) {
+			//$this->set('exames', true);
+			//echo 'existe';
+			return true;
+		} else {
+			//$this->set('exames', false);
+			//echo 'nao existe';
+			return false;
+		}	
+		
 	}
 
 
