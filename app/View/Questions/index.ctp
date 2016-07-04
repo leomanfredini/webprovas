@@ -1,14 +1,8 @@
 <div class="questions index">
 
 	<h3>Questões</h3>
-	
 
-	<?php
-		//Exibe as questões adicionadas na session 
-		$e = $this->Session->read('Exams_select');
-		var_dump($e); 
-		echo '<br><br>';
-	?> 
+
 
 	<div class="filters">
 		<h1>Filtrar por:</h1>		
@@ -72,11 +66,19 @@
 				<?php echo $this->Form->postlink('Add', ['controller' => 'exams' , 'action' => 'add_question_to_exam', $question['Question']['id']]); ?>
 				<?php //echo $this->Form->postlink('Verif', ['type' => 'hidden', 'controller' => 'exams' , 'action' => 'read_selected_item', $question['Question']['id']]); ?> 
 				<?php echo $this->Form->postlink('Editar', ['action' => 'edit', $question['Question']['id']]); ?> 
-				<?php echo $this->Form->postlink('Excluir', ['action' => 'delete', $question['Question']['id']], ['confirm' => 'Tem certeza?']); ?>
+				<?php echo $this->Form->postlink('Excluir', ['action' => 'delete', $question['Question']['id']], ['confirm' => 'Tem certeza que deseja excluir definitivamente esta questão?']); ?>
 			</td>
 		</tr>
 		<?php endforeach; ?>
+
 	</table>
+	<div class='paging'>
+	<?php
+	echo $this->Paginator->prev('« Anterior', null, null, ['class' => 'desabilitado']);
+	echo $this->Paginator->numbers();
+	echo $this->Paginator->next('Próxima »', null, null, ['class' => 'desabilitado']);
+	?>
+	</div>
 
 </div>
 

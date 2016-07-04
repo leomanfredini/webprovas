@@ -50,7 +50,7 @@ class QuestionsController extends AppController {
 		}
 		$this->Question->recursive = 0;
 		$this->paginate = array(
-			'limit' => 100,
+			'limit' => 10,
 			'conditions' => $conditions
 		);
 		$this->set('questions', $this->paginate());
@@ -79,16 +79,9 @@ class QuestionsController extends AppController {
 		$this->set('question',$dados);
 		if (!$this->Question->exists()) {
 			throw new NotFoundException('Questão Inexistente');
-		}
-		//debug($dados);
+		}		
 	}
 
-
-
-
-	public function add() {
-		
-	}
 
 
 	public function add_o(){
@@ -159,7 +152,7 @@ class QuestionsController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Question->saveAll($this->request->data)) {
-				$this->Flash->success('Conteúdo alterado com sucesso.');
+				$this->Flash->success('Questão alterada com sucesso.');
 				$this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error('ERRO!! A questão não pôde ser alterada!!!');
@@ -183,7 +176,7 @@ class QuestionsController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Question->saveAll($this->request->data)) {
-				$this->Flash->success('Conteúdo alterado com sucesso.');
+				$this->Flash->success('Questão alterada com sucesso.');
 				$this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error('ERRO!! A questão não pôde ser alterada!!!');
@@ -206,7 +199,7 @@ class QuestionsController extends AppController {
 		}
 		//Tenta apagar a postagem
 		if ($this->Question->delete($id)){
-			$this->Flash->success('Questão apagada com sucesso.');
+			$this->Flash->success('Questão excluída com sucesso.');
 			$this->redirect(['action' => 'index']);
 		}
 	}

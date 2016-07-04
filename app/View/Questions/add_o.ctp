@@ -70,3 +70,46 @@ $this->Js->get('#QuestionGradeId')->event('change',
         ))
     );
 ?>
+
+
+
+
+
+<script type="text/javascript">
+function edits()
+{
+if(document.getElementById("name").value=="")
+{
+    alert("Please enter your whole name.")
+    return false;
+}
+    if(document.getElementById("jarreau").checked=="")
+{
+    alert("Please enter your whole name.")
+    return false;
+}
+    else if(document.getElementById("aretha").checked=="")
+{
+    alert("Please enter your whole name.")
+    return false;
+}
+    else if(document.getElementById("withers").checked=="")
+{
+    alert("Please enter your whole name.")
+    return false;
+}
+    else if(document.getElementById("joel").checked=="")
+{
+    alert("Please enter your whole name.")
+    return false;
+}
+    else if(document.getElementById("warwidk").checked=="")
+{
+    alert("Please enter your whole name.")
+    return false;
+}
+    
+else return true;
+}
+ 
+</script>

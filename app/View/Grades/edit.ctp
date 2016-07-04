@@ -12,7 +12,7 @@
 <div class="actions">
 	<?php echo $this->element('menu_main'); ?>
     <br><hr><br>
-	<h3>Ações</h3>
+	<h3>Menu Disciplinas</h3>
 	<ul>
 		<li><?php echo $this->Form->postLink('Excluir', ['action' => 'delete', $this->Form->value('Grade.id')], ['confirm' => 'Deseja realmente excluir esta disciplina?']); ?></li>
 		<li><?php echo $this->Html->link('Listar Disciplinas', ['controller' => 'grades', 'action' => 'index']); ?> </li>

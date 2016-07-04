@@ -16,12 +16,12 @@ class ExamsController extends AppController {
 				}
 				debug($questionsSelected);
 				array_push($questionsSelected, $this->request->data['Exams']['num']);
-				echo 'Entrou if';
-				debug($questionsSelected);	
+				//echo 'Entrou if';
+				//debug($questionsSelected);	
 			} else {
 				$questionsSelected[] = $this->request->data['Exams']['num'];
-				echo 'Entrou else';
-				debug($questionsSelected);				
+				//echo 'Entrou else';
+				//debug($questionsSelected);				
 			}
 
 			$this->Session->write('Exams_select', $questionsSelected);					
@@ -33,7 +33,7 @@ class ExamsController extends AppController {
 		
 	}
 
-
+	//Função para adicionar o id da questão à variável da session
 	public function add_question_to_exam($id) {
 		//if ($this->request->is('post')) {
 
@@ -55,13 +55,16 @@ class ExamsController extends AppController {
 			}
 
 			$this->Session->write('Exams_select', $questionsSelected);	
-			$this->redirect(['controller' => 'questions', 'action' => 'index']);				
+			//$this->redirect(['controller' => 'questions', 'action' => 'index']);
+			$this->redirect($this->referer());				
 
 		//}
 		
 	}
 
 
+
+	//Função para ler se id da questão está adicionado na session
 	public function read_selected_item($id) {
 		$questionsSelected[] = null;
 		
@@ -71,62 +74,98 @@ class ExamsController extends AppController {
 			}			
 		} 
 
-		// echo '<br>Result = ' . $result . '<br><br>';
-		// if (isset($result)) {
-		// 	echo '<p>Key = ' . $result;				
-		// 	$this->set('exames', true);
-		// 	echo 'existe';
-		// } else {
-		// 	$this->set('exames', false);
-		// 	echo 'nao existe';
-		// }		
-
-
-		if (in_array($id, $questionsSelected)) {
-			//$this->set('exames', true);
-			//echo 'existe';
+		if (in_array($id, $questionsSelected)) {			
 			return true;
 		} else {
-			//$this->set('exames', false);
-			//echo 'nao existe';
 			return false;
 		}	
 		
 	}
 
 
-	public function delete($id){
-		// if (!$this->request->is('post')){
-		// 	throw new MethodNotAllowedException();			
-		// }
+	
+
+	//Função para listar as questões que estão na session
+	public function view_selected_questions(){
+		$this->LoadModel('Question');
+		if ($this->Session->read('Exams_select') != null){				
+			foreach ($this->Session->read('Exams_select') as $k => $value) {
+				$questionsSelected[] = $value;						
+			}			
+			foreach($questionsSelected as $key => $val){				
+				$dados[] = $this->Question->findById($val);
+				$this->set('exams',$dados);				
+			}
+			$this->set('exams',$dados);	
+		} else {
+			$this->set('exams',null);
+			//$this->Flash->error('Nenhuma Questão Selecionada');				
+		}
+	}
+
+
+
+
+	//Função para remover uma questão da session
+	public function remove_selected_item($id = null) {
+		$ids[] = $id;
+		if ($this->request->is('post')) {
+
+			if ($this->Session->read('Exams_select') != null){				
+				foreach ($this->Session->read('Exams_select') as $k => $value) {
+					$questionsSelected[] = $value;						
+				}
+				$questions = array_diff($questionsSelected, $ids);
+				$this->Session->write('Exams_select', $questions);
+				$this->Flash->success('Questão removida.');
+				//$this->redirect(['action' => 'view_selected_questions']);
+				//$this->redirect(Controller::referer());
+				$this->redirect($this->referer());
+
+			}
+		}
+	}
+
+
+
+	public function generate_exam_teacher(){
+		$this->LoadModel('Question');
+		if ($this->Session->read('Exams_select') != null){				
+			foreach ($this->Session->read('Exams_select') as $k => $value) {
+				$questionsSelected[] = $value;						
+			}			
+			foreach($questionsSelected as $key => $val){				
+				$dados[] = $this->Question->findById($val);
+				$this->set('exams',$dados);				
+			}
+			$this->set('exams',$dados);	
+		} else {
+			$this->set('exams',null);
+			//$this->Flash->error('Nenhuma Questão Selecionada');				
+		}
+
+	}
+
+
+
+	public function generate_exam_student(){
+		$this->LoadModel('Question');
+		if ($this->Session->read('Exams_select') != null){				
+			foreach ($this->Session->read('Exams_select') as $k => $value) {
+				$questionsSelected[] = $value;						
+			}			
+			foreach($questionsSelected as $key => $val){				
+				$dados[] = $this->Question->findById($val);
+				$this->set('exams',$dados);				
+			}
+			$this->set('exams',$dados);	
+		} else {
+			$this->set('exams',null);
+			//$this->Flash->error('Nenhuma Questão Selecionada');				
+		}
 		
-		// if ($this->Grade->delete($id)){
-		// 	$this->Flash->success('Disciplina apagada com sucesso.');
-		// 	$this->redirect(['action' => 'index']);
-		// }
-
-		// //SQL para apagar respostas sem questões associadas
-		// //DELETE FROM `answers` WHERE question_id NOT IN (select id from questions)
-		// //SELECT * FROM `answers` WHERE question_id NOT IN (select id from questions)
 	}
 
-
-	public function edit($id = null) {
-		// $this->Grade->id = $id;
-		// if (!$this->Grade->exists()) {
-		// 	throw new NotFoundException('Disciplina Inválida');
-		// }
-		// if ($this->request->is('post') || $this->request->is('put')) {
-		// 	if ($this->Grade->save($this->request->data)) {
-		// 		$this->Flash->success('Conteúdo alterado com sucesso.');
-		// 		$this->redirect(['action' => 'index']);
-		// 	} else {
-		// 		$this->Flash->error('ERRO!! A disciplina não pôde ser alterada!!!');
-		// 	}
-		// } else {
-		// 	$this->request->data = $this->Grade->read(null, $id);
-		// }
-	}
 
 
 }

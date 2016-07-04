@@ -21,16 +21,9 @@
 
 	<a href="javascript:window.history.back()">Voltar</a>
 
-
-	<!-- <br><br><br><hr><br>	
-	<h1>A raposa vermelha ataca o cão preguiçoso</h1>
-	<h2>A raposa vermelha ataca o cão preguiçoso</h2>
-	<h3>A raposa vermelha ataca o cão preguiçoso</h3>
-	<h4>A raposa vermelha ataca o cão preguiçoso</h4>
-	<h5>A raposa vermelha ataca o cão preguiçoso</h5>
-	<h6>A raposa vermelha ataca o cão preguiçoso</h6> -->
-
 </div>
+
+
 
 <div class="actions">
     <?php echo $this->element('menu_main'); ?>
