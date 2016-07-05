@@ -1,3 +1,4 @@
+
 <div class="questions index">
 
 	<h3>Questões</h3>
@@ -48,7 +49,7 @@
 		<?php foreach ($questions as $question): ?>
 		<tr>
 			<td>
-				<?php echo $this->Form->checkbox('published', ['checked' => ($this->requestAction(['controller'=>'exams', 'action'=>'read_selected_item', $question['Question']['id']])), 'value' => $question['Question']['id'], 'disabled' => true]); ?>
+				<?php echo $this->Form->checkbox('published', ['checked' => ($this->requestAction(['controller'=>'exams', 'action'=>'read_selected_item', $question['Question']['id']])), 'value' => $question['Question']['id'], 'disabled' => false]); ?>
 			</td>
 			<td>
 				<?php echo $this->Html->link($this->Text->truncate($question['Question']['description'],50, ['ellipsis' => '...', 'exact' => false]), ['controller' => 'questions' , 'action' => 'view', $question['Question']['id']]); ?>
@@ -63,7 +64,7 @@
 				<?php echo $question['Question']['type']; ?>
 			</td>
 			<td class="actions">
-				<?php echo $this->Form->postlink('Add', ['controller' => 'exams' , 'action' => 'add_question_to_exam', $question['Question']['id']]); ?>
+				<?php //echo $this->Form->postlink('Add', ['controller' => 'exams' , 'action' => 'add_question_to_exam', $question['Question']['id']]); ?>
 				<?php //echo $this->Form->postlink('Verif', ['type' => 'hidden', 'controller' => 'exams' , 'action' => 'read_selected_item', $question['Question']['id']]); ?> 
 				<?php echo $this->Form->postlink('Editar', ['action' => 'edit', $question['Question']['id']]); ?> 
 				<?php echo $this->Form->postlink('Excluir', ['action' => 'delete', $question['Question']['id']], ['confirm' => 'Tem certeza que deseja excluir definitivamente esta questão?']); ?>
@@ -107,3 +108,38 @@ $this->Js->get('#QuestionGradeId')->event('change',
         ))
     );
 ?>
+
+
+
+<script>
+
+	$(function() {
+
+		$("input[type=checkbox").change(function(e) {
+
+			question_id = $(this).val();
+			checked = $(this).prop("checked");
+
+			baseUrl = 'http://provafacil/exams/';
+			url = checked ? 'add_question_to_exam/' : 'remove_selected_item/';
+			
+			$.ajax({
+				url: baseUrl + url + question_id,
+				type: 'POST',
+				beforeSend: function(e) {
+					$.LoadingOverlay("show");
+				},
+				success: function(data) {
+					$.LoadingOverlay("hide");
+				},
+				error: function() {
+					$.LoadingOverlay("hide");
+					alert('não foi possível atualizar dados');
+				}
+
+			});
+		});		
+
+	});
+	
+</script>
