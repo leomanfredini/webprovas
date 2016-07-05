@@ -84,9 +84,7 @@
 
 </div>
 
-<div class="actions">
-	<?php echo $_SERVER['HTTP_HOST']; ?>
-	<br><br>
+<div class="actions">	
     <?php echo $this->element('menu_main'); ?>
     <br><hr><br>
     <?php echo $this->element('menu_questions'); ?>
