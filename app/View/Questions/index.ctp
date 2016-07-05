@@ -123,7 +123,7 @@ $this->Js->get('#QuestionGradeId')->event('change',
 			question_id = $(this).val();
 			checked = $(this).prop("checked");
 
-			baseUrl = 'http://provafacil/exams/';
+			baseUrl = 'http://<?php echo $_SERVER['HTTP_HOST']; ?>/exams/';
 			url = checked ? 'add_question_to_exam/' : 'remove_selected_item/';
 			
 			$.ajax({
