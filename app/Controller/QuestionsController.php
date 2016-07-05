@@ -152,7 +152,7 @@ class QuestionsController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Question->saveAll($this->request->data)) {
-				$this->Flash->success('Questão alterada com sucesso.');
+				$this->Flash->success('Questão ' . $id .' alterada com sucesso.');				
 				$this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error('ERRO!! A questão não pôde ser alterada!!!');
@@ -165,6 +165,7 @@ class QuestionsController extends AppController {
 		$contents = $this->Question->Content->find('list');
 		$this->set(compact('contents'));	
 		//$this->render('edit_o');	
+
 	}
 
 
@@ -176,7 +177,7 @@ class QuestionsController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Question->saveAll($this->request->data)) {
-				$this->Flash->success('Questão alterada com sucesso.');
+				$this->Flash->success('Questão ' . $id .' alterada com sucesso.');
 				$this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->error('ERRO!! A questão não pôde ser alterada!!!');
@@ -199,7 +200,7 @@ class QuestionsController extends AppController {
 		}
 		//Tenta apagar a postagem
 		if ($this->Question->delete($id)){
-			$this->Flash->success('Questão excluída com sucesso.');
+			$this->Flash->success('Questão ' . $id .' excluída com sucesso.');
 			$this->redirect(['action' => 'index']);
 		}
 	}

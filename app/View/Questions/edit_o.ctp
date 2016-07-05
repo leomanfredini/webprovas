@@ -19,27 +19,27 @@
     </tr>
     <tr>                 
         <td><?php echo $this->Form->input('Answer.0.description', ['label'=>'','type'=>'text']); ?></td>        
-        <td><?php echo $this->Form->input('Answer.0.is_correct', ['type'=>'radio', 'options' => [1 => '']]); ?></td>
+        <td><?php echo $this->Form->input('Answer.0.is_correct', ['type'=>'checkbox', 'label'=>'']); ?></td>
         <td><?php echo $this->Form->input('Answer.0.id', ['type'=>'hidden']); ?></td>
     </tr>
     <tr>        
         <td><?php echo $this->Form->input('Answer.1.description', ['label'=>'','type'=>'text']); ?></td>        
-        <td><?php echo $this->Form->input('Answer.1.is_correct', ['type'=>'radio', 'options' => [1 => '']]); ?></td>
+        <td><?php echo $this->Form->input('Answer.1.is_correct', ['type'=>'checkbox', 'label'=>'']); ?></td>
         <td><?php echo $this->Form->input('Answer.1.id', ['type'=>'hidden']); ?></td>
     </tr>
     <tr>        
         <td><?php echo $this->Form->input('Answer.2.description', ['label'=>'','type'=>'text']); ?></td>        
-        <td><?php echo $this->Form->input('Answer.2.is_correct', ['type'=>'radio', 'options' => [1 => '']]); ?></td>
+        <td><?php echo $this->Form->input('Answer.2.is_correct', ['type'=>'checkbox', 'label'=>'']); ?></td>
         <td><?php echo $this->Form->input('Answer.2.id', ['type'=>'hidden']); ?></td>
     </tr>
     <tr>        
         <td><?php echo $this->Form->input('Answer.3.description', ['label'=>'','type'=>'text']); ?></td>        
-        <td><?php echo $this->Form->input('Answer.3.is_correct', ['type'=>'radio', 'options' => [1 => '']]); ?></td>
+        <td><?php echo $this->Form->input('Answer.3.is_correct', ['type'=>'checkbox', 'label'=>'']); ?></td>
         <td><?php echo $this->Form->input('Answer.3.id', ['type'=>'hidden']); ?></td>
     </tr>    
     <tr>        
         <td><?php echo $this->Form->input('Answer.4.description', ['label'=>'','type'=>'text']); ?></td>        
-        <td><?php echo $this->Form->input('Answer.4.is_correct', ['type'=>'radio', 'options' => [1 => '']]); ?></td>
+        <td><?php echo $this->Form->input('Answer.4.is_correct', ['type'=>'checkbox', 'label'=>'']); ?></td>
         <td><?php echo $this->Form->input('Answer.4.id', ['type'=>'hidden']); ?></td>
     </tr>    
     </table>
@@ -74,3 +74,18 @@ $this->Js->get('#QuestionGradeId')->event('change',
         ))
     );
 ?>
+
+<!-- Código para selecionar um radio button por vez -->
+<script type="text/javascript">
+
+$(function() {
+    $("input[type=checkbox]").change(function(e) { 
+        element = this;
+        $("input[type=checkbox]").each(function(e) {
+            if (this != element)
+                $(this).prop("checked", false);
+        });
+    });
+});
+
+</script>

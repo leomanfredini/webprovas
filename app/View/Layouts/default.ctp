@@ -33,6 +33,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
+		//Personal Js
+		echo $this->Html->script('jquery.min');
+		echo $this->Js->writeBuffer();
 	?>
 </head>
 <body>
@@ -59,7 +62,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		</div>
 	</div>
 	<?php //echo $this->element('sql_dump'); ?>
-	<?php echo $this->Html->script('jquery.min');
-		echo $this->Js->writeBuffer(); ?>
+	
 </body>
 </html>

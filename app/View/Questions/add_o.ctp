@@ -20,23 +20,23 @@
     </tr>
     <tr>        
         <td><?php echo $this->Form->input('Answer.0.description', ['label'=>'','type'=>'text']); ?></td>        
-        <td><?php echo $this->Form->input('Answer.0.is_correct', ['type'=>'radio', 'options' => [1 => '']]); ?></td>
+        <td><?php echo $this->Form->input('Answer.0.is_correct', ['type'=>'checkbox', 'label'=>'']); ?></td>
     </tr>
     <tr>        
         <td><?php echo $this->Form->input('Answer.1.description', ['label'=>'','type'=>'text']); ?></td>        
-        <td><?php echo $this->Form->input('Answer.1.is_correct', ['type'=>'radio', 'options' => [1 => '']]); ?></td>
+        <td><?php echo $this->Form->input('Answer.1.is_correct', ['type'=>'checkbox', 'label'=>'']); ?></td>
     </tr>
     <tr>        
         <td><?php echo $this->Form->input('Answer.2.description', ['label'=>'','type'=>'text']); ?></td>        
-        <td><?php echo $this->Form->input('Answer.2.is_correct', ['type'=>'radio', 'options' => [1 => '']]); ?></td>
+        <td><?php echo $this->Form->input('Answer.2.is_correct', ['type'=>'checkbox', 'label'=>'']); ?></td>
     </tr>
     <tr>        
         <td><?php echo $this->Form->input('Answer.3.description', ['label'=>'','type'=>'text']); ?></td>        
-        <td><?php echo $this->Form->input('Answer.3.is_correct', ['type'=>'radio', 'options' => [1 => '']]); ?></td>
+        <td><?php echo $this->Form->input('Answer.3.is_correct', ['type'=>'checkbox', 'label'=>'']); ?></td>
     </tr>  
     <tr>        
         <td><?php echo $this->Form->input('Answer.4.description', ['label'=>'','type'=>'text']); ?></td>        
-        <td><?php echo $this->Form->input('Answer.4.is_correct', ['type'=>'radio', 'options' => [1 => '']]); ?></td>
+        <td><?php echo $this->Form->input('Answer.4.is_correct', ['type'=>'checkbox', 'label'=>'']); ?></td>
     </tr>    
     </table>
 <?php echo $this->Form->end('Cadastrar'); ?>
@@ -71,45 +71,17 @@ $this->Js->get('#QuestionGradeId')->event('change',
     );
 ?>
 
-
-
-
-
+<!-- Código para selecionar um radio button por vez -->
 <script type="text/javascript">
-function edits()
-{
-if(document.getElementById("name").value=="")
-{
-    alert("Please enter your whole name.")
-    return false;
-}
-    if(document.getElementById("jarreau").checked=="")
-{
-    alert("Please enter your whole name.")
-    return false;
-}
-    else if(document.getElementById("aretha").checked=="")
-{
-    alert("Please enter your whole name.")
-    return false;
-}
-    else if(document.getElementById("withers").checked=="")
-{
-    alert("Please enter your whole name.")
-    return false;
-}
-    else if(document.getElementById("joel").checked=="")
-{
-    alert("Please enter your whole name.")
-    return false;
-}
-    else if(document.getElementById("warwidk").checked=="")
-{
-    alert("Please enter your whole name.")
-    return false;
-}
-    
-else return true;
-}
- 
+
+$(function() {
+    $("input[type=checkbox]").change(function(e) { 
+        element = this;
+        $("input[type=checkbox]").each(function(e) {
+            if (this != element)
+                $(this).prop("checked", false);
+        });
+    });
+});
+
 </script>
