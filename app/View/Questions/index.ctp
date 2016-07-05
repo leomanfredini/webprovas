@@ -9,6 +9,7 @@
 		<h1>Filtrar por:</h1>		
 				
 		<?php		
+
 		$base_url = ['controller' => 'questions', 'action' => 'index'];
 		echo $this->Form->create('Question', ['url' => $base_url, 'class' => 'filter']);
 		
@@ -84,6 +85,8 @@
 </div>
 
 <div class="actions">
+	<?php echo $_SERVER['HTTP_HOST']; ?>
+	<br><br>
     <?php echo $this->element('menu_main'); ?>
     <br><hr><br>
     <?php echo $this->element('menu_questions'); ?>
