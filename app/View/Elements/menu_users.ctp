@@ -1,4 +1,6 @@
-<h3>Menu Usuários</h3>
+<!-- <h3>Menu Usuários</h3> -->
+<br><br>
+
 <ul>
     <li><?php echo $this->Html->link('Novo Usuário', ['controller' => 'users', 'action' => 'addUser']); ?></li>
     <li><?php 
@@ -7,6 +9,8 @@
 		}
      ?>
     </li>
+    
+
     <li><?php 
     	if (!$this->Session->check('User_id')) {
 		  echo $this->Html->link('Login', ['controller' => 'users', 'action' => 'login']);		  

@@ -39,12 +39,12 @@ class AppController extends Controller {
 		'Session',
 		'Auth' => [
 			'loginRedirect' => [
-				'controller' => 'questions',
-				'action' => 'index',
+				'controller' => 'pages',
+				'action' => 'start',
 			],
 			'logoutRedirect' => [
-				'controller' => 'users',
-				'action' => 'login',
+				'controller' => 'pages',
+				'action' => 'start',
 			],
 			'authenticate' => [
 				'Form' => [

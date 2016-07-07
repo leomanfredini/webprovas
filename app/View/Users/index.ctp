@@ -24,8 +24,8 @@
 <div class="actions">
 	<?php
 		if ($this->Session->valid()){
-			echo $this->element('menu_main'). '<br><hr><br>';	
+			echo $this->element('menu_main');	
 		}
 	?>
-    <?php echo $this->element('menu_users'); ?>    
+        
 </div>

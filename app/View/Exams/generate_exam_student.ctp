@@ -1,4 +1,9 @@
 <?php 
+//echo $this->Form->button('Gerar PDF', ['controller' => 'exams','action' => 'index']);
+echo $this->Html->link('Gerar PDF', ['controller' => 'exams', 'action' => 'index']); 
+?>
+<br><br>
+<?php 
 	$n = 1;
 	foreach ($exams as $val => $question): 
 ?>

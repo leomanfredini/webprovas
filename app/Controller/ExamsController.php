@@ -130,6 +130,7 @@ class ExamsController extends AppController {
 
 	public function generate_exam_teacher(){
 		$this->LoadModel('Question');
+		$this->layout = 'blank';
 		if ($this->Session->read('Exams_select') != null){				
 			foreach ($this->Session->read('Exams_select') as $k => $value) {
 				$questionsSelected[] = $value;						
@@ -141,7 +142,6 @@ class ExamsController extends AppController {
 			$this->set('exams',$dados);	
 		} else {
 			$this->set('exams',null);
-			//$this->Flash->error('Nenhuma Questão Selecionada');				
 		}
 
 	}
@@ -150,6 +150,7 @@ class ExamsController extends AppController {
 
 	public function generate_exam_student(){
 		$this->LoadModel('Question');
+		$this->layout = 'blank';
 		if ($this->Session->read('Exams_select') != null){				
 			foreach ($this->Session->read('Exams_select') as $k => $value) {
 				$questionsSelected[] = $value;						
@@ -161,7 +162,6 @@ class ExamsController extends AppController {
 			$this->set('exams',$dados);	
 		} else {
 			$this->set('exams',null);
-			//$this->Flash->error('Nenhuma Questão Selecionada');				
 		}
 		
 	}

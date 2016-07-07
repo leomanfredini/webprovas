@@ -3,7 +3,7 @@
 
 <?php echo $this->Form->create('User'); ?>
 	<fieldset>
-		<legend>Insira o Usuário e Senha</legend>
+		<legend>Efetue login para acessar o sistema</legend>
 		<?php
 			echo $this->Form->input('username', ['label' => 'Usuario', ]);
 			echo $this->Form->input('password', ['label' => 'Senha', ]);			

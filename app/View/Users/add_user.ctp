@@ -1,4 +1,4 @@
-<div class="users form">
+<div class="users index">
 <?php echo $this->Form->create('User'); ?>
 	<fieldset>
 		<legend> Adicionar Usuário</legend>
@@ -11,15 +11,14 @@
 			echo $this->Form->end('Adicionar');
 		?>		
 	</fieldset>
+</div>
 
-
-</div> 
-
-<div class="actions">
-	<?php
-		if ($this->Session->valid()){
-			echo $this->element('menu_main'). '<br><hr><br>';	
-		}
-	?>
-    <?php echo $this->element('menu_users'); ?>    
+<div class="actions">	
+    <?php
+    	if ($this->Session->check('User_id')){
+    		echo $this->element('menu_main');
+		} else {
+			echo $this->element('menu_users');
+	}
+?>  
 </div>

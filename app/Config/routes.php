@@ -26,8 +26,8 @@
  * to use (in this case, /app/View/Pages/home.ctp)...
  */
 	//Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
-	//Router::connect('/', array('controller' => 'pages', 'action' => 'start'));
-	Router::connect('/', array('controller' => 'exams', 'action' => 'index'));
+	Router::connect('/', array('controller' => 'pages', 'action' => 'start'));
+	//Router::connect('/', array('controller' => 'exams', 'action' => 'index'));
 /**
  * ...and connect the rest of 'Pages' controller's URLs.
  */
@@ -44,3 +44,6 @@
  * the built-in default routes.
  */
 	require CAKE . 'Config' . DS . 'routes.php';
+
+
+	
