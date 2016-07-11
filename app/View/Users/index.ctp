@@ -1,4 +1,7 @@
 <div class="users form">
+
+<h3>Usuários</h3>
+
 <table>
 	<tr>
 		
@@ -24,7 +27,9 @@
 <div class="actions">
 	<?php
 		if ($this->Session->valid()){
-			echo $this->element('menu_main');	
+			echo $this->element('menu_main');
+			echo '<br><hr><br>';
+    		echo $this->element('menu_users');	
 		}
 	?>
         

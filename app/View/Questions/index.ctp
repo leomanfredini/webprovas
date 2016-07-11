@@ -21,13 +21,19 @@
 		echo $this->Form->submit("Filtrar");
 
 		// Adiciona o botão de reset
-		echo "<div class='submit actions'>";
-		echo $this->Html->link("Listar Todas",$base_url);
-		echo "</div>";
+		//echo "<div class='submit actions'>";
+		//echo $this->Html->link("Listar Todas",$base_url);		
+		//echo "</div>";		
+
 		echo $this->Form->end();
 		?>
 
 	</div>
+
+	<div class='submit actions'>	
+		<?php echo $this->Html->link("Listar Todas",$base_url);	?>
+	</div>
+
 
 	<table cellpadding="0" cellspacing="0">
 		<tr>

@@ -13,5 +13,5 @@
 </div> 
 
 <div class="actions">
-    <?php echo $this->element('menu_users'); ?>    
+    <?php echo $this->element('menu_login'); ?>    
 </div>

@@ -7,7 +7,7 @@ class ExamsController extends AppController {
 	
 
 	public function index() {
-		
+/*		
 		if ($this->request->is('post')) {
 
 			if ($this->Session->read('Exams_select') != null){				
@@ -27,10 +27,7 @@ class ExamsController extends AppController {
 			$this->Session->write('Exams_select', $questionsSelected);					
 
 		}
-
-		//REMOVE ITENS
-		//$_SESSION[cart]=array_diff($_SESSION[cart],$prod_id)
-		
+*/		
 	}
 
 	//Função para adicionar o id da questão à variável da session

@@ -2,7 +2,7 @@
 
 	<h3>Provas</h3>
 
-	
+	<?php //echo $this->Auth->user('id'); ?>
 
 
 

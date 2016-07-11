@@ -17,8 +17,10 @@
     <?php
     	if ($this->Session->check('User_id')){
     		echo $this->element('menu_main');
+    		echo '<br><hr><br>';
+    		echo $this->element('menu_users');
 		} else {
-			echo $this->element('menu_users');
+			echo $this->element('menu_login');
 	}
 ?>  
 </div>
