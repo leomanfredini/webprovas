@@ -1,3 +1,22 @@
+
+<table style="float: left;">
+<tbody>
+<tr>
+<td>&nbsp;</td>
+<td style="text-align: center;">
+	<?php echo $this->html->image('logo.png'); ?>
+	<br>
+	<strong>PROFESSOR: <?php echo AuthComponent::user('name'); ?></strong>
+	<br><br>
+	<strong>ALUNO:&nbsp;________________________________________________&nbsp;&nbsp;&nbsp;&nbsp;DATA:&nbsp;___/___/______</strong>
+	<br><br>
+</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+
 <?php 
 //echo $this->Form->button('Gerar PDF', ['controller' => 'exams','action' => 'index']);
 //echo $this->Html->link('Gerar PDF', ['controller' => 'exams', 'action' => 'index']); 
@@ -11,7 +30,7 @@
 
 	<h3>
 		<?php 
-			echo $n . ' - ' . $question['Question']['description'];
+			echo '<strong>' . $n . '.</strong> ' . nl2br(h($question['Question']['description']));
 			$n++;
 		?>
 	</h3>
@@ -27,7 +46,7 @@
 			// }
 			
 			if ($question['Question']['type'] == 'o'){
-				echo '(&nbsp;&nbsp;)&nbsp;&nbsp;<strong>' . $l . '</strong> - ' . $answer['description'] . '<br><br>';
+				echo '(&nbsp;&nbsp;)&nbsp;&nbsp;<strong>' . $l . '</strong>.&nbsp;&nbsp;' . $answer['description'] . '<br><br>';
 				$l++;
 			} else {
 				echo '<br><br><br><br><br><br><br><br>';				

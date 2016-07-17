@@ -4,7 +4,6 @@
 	<h3>Questões</h3>
 
 
-
 	<div class="filters">
 		<h1>Filtrar por:</h1>		
 				
@@ -52,8 +51,9 @@
 			</th>
 			<th width="130" align="center">Ações</th>
 		</tr>
-
+<!-- <?php debug($questions); ?> -->
 		<?php foreach ($questions as $question): ?>
+
 		<tr>
 			<td>
 				<?php echo $this->Form->checkbox('published', ['checked' => ($this->requestAction(['controller'=>'exams', 'action'=>'read_selected_item', $question['Question']['id']])), 'value' => $question['Question']['id'], 'disabled' => false]); ?>

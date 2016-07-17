@@ -1,3 +1,21 @@
+
+<table style="float: left;">
+<tbody>
+<tr>
+<td>&nbsp;</td>
+<td style="text-align: center;">
+	<?php echo $this->html->image('logo.png'); ?>
+	<br>
+	<strong>PROFESSOR: </strong><?php echo AuthComponent::user('name'); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>DATA:&nbsp;___/___/______</strong>
+	<br><br>
+	<h2><strong><span style="color: #ff0000;">GABARITO DO PROFESSOR</span></strong></h2>	
+</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+
 <?php 
 	$n = 1;
 	foreach ($exams as $val => $question): 
@@ -6,7 +24,7 @@
 
 	<h3>
 		<?php 
-			echo $n . ' - ' . $question['Question']['description'];
+			echo '<strong>' . $n . '.</strong> ' . nl2br(h($question['Question']['description']));
 			$n++;
 		?>
 	</h3>
@@ -24,10 +42,10 @@
 			}
 			
 			if ($question['Question']['type'] == 'o'){
-				echo '<strong>' . $l . '</strong> - ' . $answer['description'] . '<br><br>';
+				echo '<strong>' . $l . '</strong>.&nbsp;&nbsp;' . $answer['description'] . '<br><br>';
 				$l++;
 			} else {
-				echo $answer['description'] . '<br><br>';
+				echo nl2br(h($answer['description'])) . '<br><br>';
 				$l++;
 			}
 			

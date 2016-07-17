@@ -72,4 +72,24 @@ class ContentsController extends AppController {
 	     $this->layout = 'ajax';
 	}
 
+
+
+		//AUTORIZAÇÕES RESTRITAS PARA USUÁRIOS
+	public function isAuthorized($user = null) {
+
+	    if (in_array($this->action, array('index', 'getByGrade', 'add'))) {
+	        return true;
+	    }
+
+	    // if (in_array($this->action, array('delete'))) {
+	    //     $contentId = (int) $this->request->params['pass'][0];
+	    //     if ($this->Content->isOwnedBy($contentId, $user['id'])) {
+	    //         return true;
+	    //     }
+	    // }
+
+	    return parent::isAuthorized($user);
+
+	}
+
 }

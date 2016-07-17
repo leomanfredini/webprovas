@@ -51,12 +51,26 @@ class AppController extends Controller {
 					'passwordHasher' => 'Blowfish',
 				],
 			],
+			'authorize' => 'Controller' //AUTORIZAÇÕES RESTRITAS PARA USUÁRIOS
 		],
 	];
 
+	
 	//Executada antes de qualquer outra função
 	public function beforeFilter(){
 		$this->Auth->allow('login', 'start');
+	}
+
+
+	//AUTORIZAÇÕES RESTRITAS PARA USUÁRIOS
+	public function isAuthorized($user = null) {
+	    // Admin can access every action
+	    if (isset($user['role']) && $user['role'] === 'admin') {
+	        return true;
+	    } else {
+	    	return false;	
+	    }
+
 	}
 
 	

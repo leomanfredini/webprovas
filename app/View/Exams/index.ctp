@@ -2,10 +2,27 @@
 
 	<h3>Provas</h3>
 
-	<?php //echo $this->Auth->user('id'); ?>
+	<table cellpadding="0" cellspacing="0">
+		<tr>
+			<th><?php echo $this->Paginator->sort('id');?></th>
+			<th><?php echo $this->Paginator->sort('title', 'Titulo');?></th>
+			<th><?php echo $this->Paginator->sort('class', 'Turma');?></th>
+			<th><?php echo $this->Paginator->sort('date', 'Data de Aplicação');?></th>
+			<th>Ações</th>
+		</tr>
 
-
-
+		<?php foreach ($exams as $exam): ?>
+		<tr>
+			<td><?php echo $exam['Exam']['id'] ?></td>
+			<td><?php echo $exam['Exam']['title'] ?></td>
+			<td><?php echo $exam['Exam']['class'] ?></td>
+			<td><?php echo $exam['Exam']['date'] ?></td>
+			<td class="actions">
+				<?php echo $this->Html->link('Carregar', ['action' => 'load', $exam['Exam']['id']]); ?> 				
+			</td>
+		</tr>
+		<?php endforeach; ?>
+	</table>
 </div>
 
 <div class="actions">

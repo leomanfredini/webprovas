@@ -36,4 +36,10 @@ class Question extends AppModel {
 		],
 	];
 
+
+    //Restrições por usuário
+    public function isOwnedBy($question, $user) {
+        return $this->field('id', array('id' => $question, 'user_id' => $user)) !== false;
+    }
+
 }

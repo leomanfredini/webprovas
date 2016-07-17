@@ -6,11 +6,16 @@ class QuestionsController extends AppController {
 
 
 	public function index() {
+		
 		// $this->Question->recursive = 0;
 		// $lista = $this->paginate();
 		// $this->set('questions', $lista);
 
+		
 		$conditions = array();
+		$userId = $this->Auth->user('id');
+		//$userGradeId = 19;
+
 		//Transform POST into GET
 		if(($this->request->is('post') || $this->request->is('put')) && isset($this->data['Question'])){
 			$filter_url['controller'] = $this->request->params['controller'];
@@ -48,12 +53,24 @@ class QuestionsController extends AppController {
 				}
 			}
 		}
-		$this->Question->recursive = 0;
+
+		
+
+		if ($this->Auth->user('role') != 'admin'){
+			$conditions['Question.user_id'] =  $userId;
+			//$conditions['Grade.id'] =  $userGradeId;
+		}
+		
+
+		//$this->Question->recursive = 0;
 		$this->paginate = array(
 			'limit' => 10,
 			'conditions' => $conditions
 		);
+		//debug($this->paginate());
+		
 		$this->set('questions', $this->paginate());
+
 
 		// get the possible values for the filters and 
 		// pass them to the view
@@ -63,13 +80,16 @@ class QuestionsController extends AppController {
 		$this->set(compact('contents'));
 
 		// Pass the search parameter to highlight the text
-		$this->set('search', isset($this->params['named']['search']) ? $this->params['named']['search'] : "");
+		//$this->set('search', isset($this->params['named']['search']) ? $this->params['named']['search'] : "");
 
 		
 	}
 
 
+
+
 	public function view($id = null){
+		//$this->request->data['Question']['user_id'] = $this->Auth->user('id');
 
 		//$this->LoadModel('Answer');
 		//$this->request->data = $this->Question->read(null, $id);
@@ -81,6 +101,7 @@ class QuestionsController extends AppController {
 			throw new NotFoundException('Questão Inexistente');
 		}		
 	}
+
 
 
 
@@ -104,6 +125,9 @@ class QuestionsController extends AppController {
 		$contents = $this->Question->Content->find('list');
 		$this->set(compact('contents'));
 	}
+
+
+
 
 
 	public function add_d() {
@@ -130,6 +154,8 @@ class QuestionsController extends AppController {
 
 
 
+
+
 	public function edit($id = null) {		
 		$this->Question->id = $id;
 		//$this->Question->read($id);
@@ -141,6 +167,8 @@ class QuestionsController extends AppController {
 			throw new MethodNotAllowedException();
 		}
 	}
+
+
 
 
 
@@ -169,6 +197,9 @@ class QuestionsController extends AppController {
 	}
 
 
+
+
+
 	public function edit_d($id = null) {
 		$this->LoadModel('Answer');
 		$this->Question->id = $id;
@@ -194,15 +225,40 @@ class QuestionsController extends AppController {
 
 
 
+
+
 	public function delete($id){
 		if (!$this->request->is('post')){
 			throw new MethodNotAllowedException();			
 		}
-		//Tenta apagar a postagem
 		if ($this->Question->delete($id)){
 			$this->Flash->success('Questão ' . $id .' excluída com sucesso.');
 			$this->redirect(['action' => 'index']);
 		}
 	}
+
+
+
+
+
+	//AUTORIZAÇÕES RESTRITAS PARA USUÁRIOS
+	public function isAuthorized($user = null) {
+
+	    if (in_array($this->action, array('index', 'add_o', 'add_d'))) {
+	        return true;
+	    }
+
+	    if (in_array($this->action, array('view', 'delete', 'edit', 'edit_o', 'edit_d'))) {
+	        $questionId = (int) $this->request->params['pass'][0];
+	        if ($this->Question->isOwnedBy($questionId, $user['id'])) {
+	            return true;
+	        }
+	    }
+
+	    return parent::isAuthorized($user);
+
+	}
+
+
 
 }

@@ -7,28 +7,19 @@ class ExamsController extends AppController {
 	
 
 	public function index() {
-/*		
-		if ($this->request->is('post')) {
+		$conditions = array();
+		$userId = $this->Auth->user('id');
 
-			if ($this->Session->read('Exams_select') != null){				
-				foreach ($this->Session->read('Exams_select') as $k => $value) {
-					$questionsSelected[] = $value;						
-				}
-				debug($questionsSelected);
-				array_push($questionsSelected, $this->request->data['Exams']['num']);
-				//echo 'Entrou if';
-				//debug($questionsSelected);	
-			} else {
-				$questionsSelected[] = $this->request->data['Exams']['num'];
-				//echo 'Entrou else';
-				//debug($questionsSelected);				
-			}
-
-			$this->Session->write('Exams_select', $questionsSelected);					
-
+		if ($this->Auth->user('role') != 'admin'){
+			$conditions['Exam.user_id'] =  $userId;			
 		}
-*/		
+
+		$this->paginate = ['conditions' => $conditions];
+
+		$lista = $this->paginate();
+		$this->set('exams', $lista);	
 	}
+
 
 	//Função para adicionar o id da questão à variável da session
 	public function add_question_to_exam($id) {
@@ -38,7 +29,7 @@ class ExamsController extends AppController {
 				foreach ($this->Session->read('Exams_select') as $k => $value) {
 					$questionsSelected[] = $value;						
 				}
-				debug($questionsSelected);
+				//debug($questionsSelected);
 				array_push($questionsSelected, $id);
 				$questionsSelected = array_unique($questionsSelected);
 				//echo 'Entrou if';
@@ -125,6 +116,7 @@ class ExamsController extends AppController {
 
 
 
+
 	public function generate_exam_teacher(){
 		$this->LoadModel('Question');
 		$this->layout = 'blank';
@@ -145,6 +137,7 @@ class ExamsController extends AppController {
 
 
 
+
 	public function generate_exam_student(){
 		$this->LoadModel('Question');
 		$this->layout = 'blank';
@@ -161,6 +154,39 @@ class ExamsController extends AppController {
 			$this->set('exams',null);
 		}
 		
+	}
+
+
+
+
+	public function save_exam(){
+		if ($this->Session->read('Exams_select') != null){				
+			foreach ($this->Session->read('Exams_select') as $k => $value) {
+				$questionsSelected[] = $value;						
+			}	
+		} else {
+			// $this->set('exams',null);
+		}
+
+		if ($this->request->is('post')) {
+			$this->Exam->saveAll($this->request->data);
+			$this->Flash->success('Prova salva com sucesso');
+			$this->redirect(['action' => 'index']);
+		} else {
+			// $this->set('title', '1');
+			// debug($questionsSelected);
+		}
+	}
+
+
+
+
+		//AUTORIZAÇÕES RESTRITAS PARA USUÁRIOS
+	public function isAuthorized($user = null) {
+		return true;
+
+	    return parent::isAuthorized($user);
+
 	}
 
 

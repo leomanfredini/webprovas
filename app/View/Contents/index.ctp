@@ -28,10 +28,5 @@
 <div class="actions">
 	<?php echo $this->element('menu_main'); ?>
     <br><hr><br>
-	<h3>Menu Conteúdos</h3>
-	<ul>
-		<li><?php echo $this->Html->link('Adicionar Conteúdo', ['action' => 'add']); ?></li>
-		<li><?php echo $this->Html->link('Listar Disciplinas', ['controller' => 'grades', 'action' => 'index']); ?> </li>
-		<li><?php echo $this->Html->link('Adicionar Disciplina', ['controller' => 'grades', 'action' => 'add']); ?> </li>
-	</ul>
+	<?php echo $this->element('menu_contents'); ?>
 </div>

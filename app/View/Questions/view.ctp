@@ -1,6 +1,6 @@
 <div class="questions view">	
 
-	<h3><?php echo $question['Question']['id'] . ' - ' . $question['Question']['description'];?></h3>
+	<h3><?php echo '<strong>' . $question['Question']['id'] . '.</strong> ' . nl2br(h($question['Question']['description']));?></h3>
 
 	<?php
 	$l = 'A';
@@ -10,7 +10,7 @@
 		} else {
 			echo $this->html->image('test-incorrect-icon.png') . '&nbsp;&nbsp;';
 		}
-		echo '<strong>' . $l . '</strong> - ' . $answer['description'] . '<br><br>';
+		echo '<strong>' . $l . '</strong>.&nbsp;&nbsp;&nbsp;' . nl2br(h($answer['description'])) . '<br><br>';
 		$l++;
 	}
 	?>	

@@ -15,4 +15,8 @@ class Content extends AppModel {
 			'rule' => 'notBlank',
 		],
 	];
+
+
+
+
 }

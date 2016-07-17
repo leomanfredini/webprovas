@@ -51,9 +51,11 @@
 	<div>
 		<?php
 			echo '<br><br>';
-			echo $this->Html->link('Gerar prova do aluno', ['action' => 'generate_exam_student'], ['target' => '_blank']);
+			echo $this->Html->link('Gerar Prova do Aluno', ['action' => 'generate_exam_student'], ['target' => '_blank']);
 			echo '&nbsp;&nbsp;|&nbsp;&nbsp;';
-			echo $this->Html->link('Gerar prova do professor', ['action' => 'generate_exam_teacher'], ['target' => '_blank']);
+			echo $this->Html->link('Gerar Gabarito do Professor', ['action' => 'generate_exam_teacher'], ['target' => '_blank']);
+			echo '&nbsp;&nbsp;|&nbsp;&nbsp;';
+			echo $this->Html->link('Salvar Prova', ['action' => 'save_exam']);
 		?>
 		
 	</div>
