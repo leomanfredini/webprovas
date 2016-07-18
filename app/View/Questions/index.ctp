@@ -10,6 +10,7 @@
 		<?php		
 
 		$base_url = ['controller' => 'questions', 'action' => 'index'];
+
 		echo $this->Form->create('Question', ['url' => $base_url, 'class' => 'filter']);
 		
 		echo $this->Form->input('grade_id', ['label' => 'Disciplina', 'options' => $grades, 'empty' => '- Todas -', 'default' => '']);
@@ -23,6 +24,7 @@
 		//echo "<div class='submit actions'>";
 		//echo $this->Html->link("Listar Todas",$base_url);		
 		//echo "</div>";		
+
 
 		echo $this->Form->end();
 		?>

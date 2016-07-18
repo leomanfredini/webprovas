@@ -1,7 +1,7 @@
 <div class="users index">
 <?php echo $this->Form->create('User'); ?>
 	<fieldset>
-		<legend> Adicionar Usuário</legend>
+		<legend>Adicionar Usuário</legend>
 		<?php
 			echo $this->Form->input('name', ['label' => 'Nome Completo', ]);
 			echo $this->Form->input('username', ['label' => 'Nome de Usuário', ]);

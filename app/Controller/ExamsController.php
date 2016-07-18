@@ -179,6 +179,11 @@ class ExamsController extends AppController {
 	}
 
 
+	public function load($id = null){
+		//IMPLEMENTAR
+	}
+
+
 
 
 		//AUTORIZAÇÕES RESTRITAS PARA USUÁRIOS

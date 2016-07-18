@@ -140,6 +140,14 @@ div.actions h3 {
 	color:#777;
 }
 
+/*div.filters {
+	display:inline;
+	float:left;
+	width:50%;
+	border-left:0px solid #666;
+	padding:10px 2%;
+}*/
+
 
 /** Tables **/
 table {
