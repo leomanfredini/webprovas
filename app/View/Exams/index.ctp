@@ -18,7 +18,7 @@
 			<td><?php echo $exam['Exam']['class'] ?></td>
 			<td><?php echo $exam['Exam']['date'] ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link('Carregar', ['action' => 'load', $exam['Exam']['id']]); ?> 				
+				<?php echo $this->Html->link('Carregar', ['action' => 'load', $exam['Exam']['id']], ['confirm' => 'Carregar esta prova? Esta ação irá eliminar as questões selecionadas até agora.']); ?> 				
 			</td>
 		</tr>
 		<?php endforeach; ?>

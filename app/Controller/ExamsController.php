@@ -162,7 +162,7 @@ class ExamsController extends AppController {
 	public function save_exam(){
 		if ($this->Session->read('Exams_select') != null){				
 			foreach ($this->Session->read('Exams_select') as $k => $value) {
-				$questionsSelected[] = $value;						
+				$questionsSelected[] = $value;	
 			}	
 		} else {
 			// $this->set('exams',null);
@@ -181,6 +181,17 @@ class ExamsController extends AppController {
 
 	public function load($id = null){
 		//IMPLEMENTAR
+		$this->request->data = $this->Exam->read(null, $id);
+		$dados = $this->Exam->findById($id);
+		$temp=$dados['Exam']['questions_selected'];
+		$questoes = explode(' ', $temp);
+		
+		$this->Session->write('Exams_select', null);
+		$this->Session->write('Exams_select', $questoes);
+		$this->Flash->success('Prova Carregada com Sucesso');
+		$this->redirect(['action' => 'view_selected_questions']);
+	
+		
 	}
 
 
