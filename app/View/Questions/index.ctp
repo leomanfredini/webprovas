@@ -2,7 +2,7 @@
 <div class="questions index">
 
 	<h3>Questões</h3>
-
+			
 
 	<div class="filters">
 		<h1>Filtrar por:</h1>		
@@ -21,9 +21,9 @@
 		echo $this->Form->submit("Filtrar");
 
 		// Adiciona o botão de reset
-		//echo "<div class='submit actions'>";
-		//echo $this->Html->link("Listar Todas",$base_url);		
-		//echo "</div>";		
+		echo "<div class='submit actions'>";
+		echo $this->Html->link("Listar Todas",$base_url);		
+		echo "</div>";		
 
 
 		echo $this->Form->end();
@@ -31,9 +31,13 @@
 
 	</div>
 
+
 	<div class='submit actions'>	
-		<?php echo $this->Html->link("Listar Todas",$base_url);	?>
+		<?php //echo $this->Html->link("Listar Todas",$base_url);	?>
 	</div>
+
+	<!-- Esconder divs -->
+
 
 
 	<table cellpadding="0" cellspacing="0">
@@ -53,7 +57,8 @@
 			</th>
 			<th width="130" align="center">Ações</th>
 		</tr>
-<!-- <?php debug($questions); ?> -->
+
+		
 		<?php foreach ($questions as $question): ?>
 
 		<tr>
@@ -152,3 +157,5 @@ $this->Js->get('#QuestionGradeId')->event('change',
 	});
 	
 </script>
+
+

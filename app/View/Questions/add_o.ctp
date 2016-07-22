@@ -1,14 +1,12 @@
-
-
 <div class="questions form">
 <fieldset>
         <legend><?php echo ('Cadastrar Questão Objetiva'); ?></legend>
-	<?php
+	<?php 
 	echo $this->Form->create('Question');
 	echo $this->Form->input('id');
 	echo $this->Form->input('grade_id', ['label' => 'Disciplina', 'empty' => '- Escolha a Disciplina -']);
-	echo $this->Form->input('content_id', ['label' => 'Conteúdo', 'empty' => '- Escolha o Conteúdo -']);	
-	echo $this->Form->input('description',['label'=>'Enunciado da Questão', 'rows'=>'3']);
+	echo $this->Form->input('content_id', ['label' => 'Conteúdo', 'empty' => '- Escolha o Conteúdo -']);
+	echo $this->Form->input('description',['label'=>'Enunciado da Questão', 'rows'=>'6']);
     echo $this->Form->input('type', ['type'=>'hidden', 'value' => 'o']);
     echo $this->Form->input('user_id', ['type'=>'hidden', 'value' => $this->Session->read('User_id')]);
 	//echo $this->Form->end('Enviar');

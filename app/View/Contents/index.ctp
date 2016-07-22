@@ -7,7 +7,12 @@
 				<th><?php echo $this->Paginator->sort('id');?></th>
 				<th><?php echo $this->Paginator->sort('grade_id', 'Disciplina');?></th>
 				<th><?php echo $this->Paginator->sort('name', 'Nome');?></th>
-				<th class="actions">Ações</th>
+				<!-- <th class="actions">Ações</th> -->
+				<?php 
+					if (AuthComponent::user('role') == 'admin'){
+						echo '<th class="actions">Ações</th>';
+					}
+				?>
 		</tr>
 
 
@@ -16,9 +21,13 @@
 			<td><?php echo $content['Content']['id']; ?></td>
 			<td><?php echo $content['Grade']['name']; ?></td>
 			<td><?php echo $content['Content']['name']; ?></td>
-			<td class="actions">			
-				<?php echo $this->Html->link('Editar', ['action' => 'edit', $content['Content']['id']]); ?>
-				<?php echo $this->Form->postLink('Excluir', ['action' => 'delete', $content['Content']['id']], ['confirm' => 'Tem certeza?']); ?>
+			<td class="actions">	
+			<?php 
+        		if (AuthComponent::user('role') == 'admin'){
+            		echo $this->Html->link('Editar', ['action' => 'edit', $content['Content']['id']]);
+            		echo $this->Form->postLink('Excluir', ['action' => 'delete', $content['Content']['id']], ['confirm' => 'Tem certeza?']);
+        		}
+        	?>				
 			</td>
 		</tr>
 		<?php endforeach; ?>
@@ -30,3 +39,6 @@
     <br><hr><br>
 	<?php echo $this->element('menu_contents'); ?>
 </div>
+
+
+	

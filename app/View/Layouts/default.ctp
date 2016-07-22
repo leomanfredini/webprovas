@@ -36,7 +36,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		//Personal Js
 		echo $this->Html->script('jquery.min');
 		echo $this->Js->writeBuffer();
-		echo $this->Html->script('loadingoverlay.min');		
+		echo $this->Html->script('loadingoverlay.min');	
 	?>
 </head>
 <body>
