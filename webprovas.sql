@@ -344,8 +344,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `role`, `grade_id`, `created`, `modified`) VALUES
 (1, 'Administrador', 'admin', '$2a$10$knG/iwwKNZZUl3/8Um4qa.7nyTE4oOtoHfu1jNRb8s1T8iTe6RLkK', 'admin', 19, '2016-07-16 20:45:51', '2016-07-16 20:46:47'),
-(4, 'Leonardo Manfredini', 'leonardo', '$2a$10$VPu4Ef0FcI/Mti04MbVXO.xWeyN1W.qeTxme0KuB8O7wKEfmMuGMS', 'user', 19, '2016-06-19 23:39:01', '2016-07-17 19:30:54'),
-(16, 'Kamila Girardi', 'kami', '$2a$10$IHRvb8LbLH27QfZonW9B9OV5dtFFlIKvS18/Xs0/LXGF3ZUt6vpBC', 'user', 5, '2016-07-17 20:36:27', '2016-07-17 20:36:27');
+(4, 'Joao Moura', 'joao', '$2a$10$VPu4Ef0FcI/Mti04MbVXO.xWeyN1W.qeTxme0KuB8O7wKEfmMuGMS', 'user', 19, '2016-06-19 23:39:01', '2016-07-17 19:30:54'),
+(16, 'Maria Silva', 'maria', '$2a$10$IHRvb8LbLH27QfZonW9B9OV5dtFFlIKvS18/Xs0/LXGF3ZUt6vpBC', 'user', 5, '2016-07-17 20:36:27', '2016-07-17 20:36:27');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
